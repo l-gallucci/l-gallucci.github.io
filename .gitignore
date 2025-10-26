@@ -75,3 +75,7 @@ test/version_tmp/
 *.ipr
 *.iws!assets/icons/
 !assets/icons/*
+# Always include icons and images
+!assets/img/
+!assets/icons/
+!assets/icons/*

@@ -308,18 +308,48 @@ body {
 }
 
 /* === RESPONSIVE === */
+/* === 📱 MOBILE FIX (solo per schermi sotto 768px) === */
 @media (max-width: 768px) {
-    .top-nav {
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* niente scroll laterale */
+    overflow-y: auto;   /* scroll solo verticale se necessario */
+    height: 100%;
+  }
+
+  .terminal-page {
+    display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    padding: 0.5rem;
+    justify-content: flex-start; /* spinge tutto verso l'alto */
+    align-items: center;
+    min-height: calc(100vh - 80px); /* corregge altezza sotto navbar */
+    background: #181818;
+    position: relative;
+    overflow: hidden;
+    padding-top: 5rem; /* spazio extra sotto la navbar */
+    padding-bottom: 2rem; /* evita che il footer venga coperto */
   }
-  .top-nav nav {
-    flex-wrap: wrap;
-    justify-content: center;
+
+  .profile-section {
+    margin-top: 1rem; /* evita che la foto entri sotto il nav */
+    text-align: center;
   }
-  .profile-photo { width: 140px; height: 140px; }
-  .profile-name { font-size: 1.5rem; }
-  .terminal-container { width: 90%; }
-  .definition-line { font-size: 1.1rem; }
+
+  .profile-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: #1e1e1e;
+    z-index: 1;
+  }
 }
