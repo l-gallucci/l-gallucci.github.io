@@ -42,11 +42,21 @@
     <!-- Navbar -->
     <header class="top-nav">
       <nav>
-        <a href="/" class="nav-link" data-page="/">⌘ Home</a>
-        <a href="/about/" class="nav-link" data-page="/about/">About</a>
-        <a href="/research/" class="nav-link" data-page="/research/">Research</a>
-        <a href="/creative/" class="nav-link" data-page="/creative/">Creative</a>
-        <a href="/contact/" class="nav-link" data-page="/contact/">Contact</a>
+        <a href="{{ site.baseurl }}/" class="{% if page.url == '/' %}active{% endif %}">
+          <i>⌘</i> Home
+        </a>
+        <a href="{{ site.baseurl }}/about/" class="{% if page.url == '/about/' %}active{% endif %}">
+          About
+        </a>
+        <a href="{{ site.baseurl }}/research/" class="{% if page.url == '/research/' %}active{% endif %}">
+          Research
+        </a>
+        <a href="{{ site.baseurl }}/creative/" class="{% if page.url == '/creative/' %}active{% endif %}">
+          Creative
+        </a>
+        <a href="{{ site.baseurl }}/contact/" class="{% if page.url == '/contact/' %}active{% endif %}">
+          Contact
+        </a>
       </nav>
 
       <div class="social-icons">
@@ -54,7 +64,7 @@
           <img src="{{ '/assets/icons/github-bw.svg' | relative_url }}" alt="GitHub">
         </a>
         <a href="https://www.linkedin.com/in/luigi-gallucci-scientificprofile/" target="_blank" aria-label="LinkedIn">
-          <img src="{{ '/assets/icons/linkedin-bw.jpg' | relative_url }}" alt="LinkedIn">
+          <img src="{{ '/assets/icons/linkedin-bw.png' | relative_url }}" alt="LinkedIn">
         </a>
         <a href="https://bsky.app/profile/luigallucci.bsky.social" target="_blank" aria-label="Bluesky">
           <img src="{{ '/assets/icons/bluesky-bw.svg' | relative_url }}" alt="Bluesky">
