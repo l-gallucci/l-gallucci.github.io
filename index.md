@@ -8,7 +8,7 @@ permalink: /
   <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Luigi Gallucci">
   <div class="hero-text">
     <h1>Luigi Gallucci</h1>
-    <p>Microbial Ecologist · Game Developer · Science Communicator</p>
+    <p>Microbial Ecologist · Coding for fun · Cooking for passion</p>
     <a href="/research/" class="btn">Explore Research</a>
     <a href="/creative/" class="btn secondary">Creative Work</a>
   </div>
