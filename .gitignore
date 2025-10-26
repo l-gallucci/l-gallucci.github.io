@@ -73,4 +73,5 @@ test/version_tmp/
 # === System ===
 *.iml
 *.ipr
-*.iws
+*.iws!assets/icons/
+!assets/icons/*
