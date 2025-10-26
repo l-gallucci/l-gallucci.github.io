@@ -1,0 +1,28 @@
+title: "Luigi Gallucci"
+description: "Microbial Ecologist · Game Developer · Science Communicator"
+url: ""
+baseurl: ""
+theme: null
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+author:
+  name: "Luigi Gallucci"
+  email: "lgallucc@mpi-bremen.de"
+  github: "luigigallucci"
+  orcid: "0000-0000-0000-0000"
+
+navbar:
+  - title: "About"
+    url: /about/
+  - title: "Research"
+    url: /research/
+  - title: "Creative"
+    url: /creative/
+  - title: "Contact"
+    url: /contact/
+
+include:
+  - _pages
