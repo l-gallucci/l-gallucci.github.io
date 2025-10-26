@@ -26,3 +26,4 @@ navbar:
 
 include:
   - _pages
+  - assets
