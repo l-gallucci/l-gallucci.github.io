@@ -22,4 +22,9 @@ permalink: /about/
   </div>
 </div>
 
+<div id="vent-scene">
+  <canvas id="mountainCanvas"></canvas>
+  <canvas id="plumeCanvas"></canvas>
+</div>
+
 <script src="{{ '/assets/js/ventScene.js' | relative_url }}"></script>
