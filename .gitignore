@@ -1,1 +1,23 @@
-.vscode
+# === Jekyll build output ===
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# === OS / editor junk ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Node / Ruby ===
+node_modules/
+.bundle/
+vendor/
+
+# === Logs & temporary ===
+*.log
+*.tmp
+*.bak
