@@ -3,8 +3,8 @@ description: "Microbial Ecologist · Game Developer · Science Communicator"
 
 # === GitHub Pages configuration ===
 
-url: "https://luigallucci.github.io"
-baseurl: "/lgallucc.github.io"
+url: "https://l-gallucci.github.io"
+baseurl: ""
 theme: null
 markdown: kramdown
 
