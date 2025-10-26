@@ -101,6 +101,25 @@ body {
   background: rgba(0, 212, 0, 0.22);
 }
 
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;  /* spinge tutto a destra */
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) brightness(120%);
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.social-icons a:hover img {
+  filter: none;
+  transform: scale(1.1);
+}
+
 /* === PAGE STRUCTURE === */
 .terminal-page {
   display: flex;
