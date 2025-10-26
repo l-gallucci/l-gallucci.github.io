@@ -4,17 +4,22 @@ title: "About"
 permalink: /about/
 ---
 
-<h1>About Me</h1>
+<link rel="stylesheet" href="{{ '/assets/css/about.css' | relative_url }}">
 
-<p>
-I’m a microbial ecologist working on hydrothermal vent systems, focusing on how trace metals shape microbial and viral communities.
-</p>
+<div class="about-page">
+  <canvas id="ventScene"></canvas>
 
-<p>
-At the <strong>Max Planck Institute for Marine Microbiology</strong>, I combine metagenomics, chemistry, and modeling
-to understand the ecology of Sulfurimonas and SUP05 lineages.
-</p>
+  <div class="about-content">
+    <h1>About Me</h1>
+    <p>
+      I’m a microbial ecologist exploring hydrothermal vents — both in the ocean and in data.
+      Here, I study how information behaves like plumes: rising, mixing, and transforming.
+    </p>
+    <p>
+      My work combines <strong>metagenomics</strong>, <strong>biogeochemistry</strong>,
+      and <strong>modeling</strong> to uncover how microbes and elements interact in dynamic systems.
+    </p>
+  </div>
+</div>
 
-<p>
-Outside of science, I develop interactive pixel-art games and apps for science communication.
-</p>
+<script src="{{ '/assets/js/ventScene.js' | relative_url }}"></script>
