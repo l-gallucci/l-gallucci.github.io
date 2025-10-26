@@ -3,28 +3,45 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{{ page.title }} | {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <!-- Meta -->
+    <meta name="description" content="{{ site.description | default: site.title }}">
+    <meta name="author" content="{{ site.author.name }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
+
   <body>
+    <!-- ===== Navbar ===== -->
     <header class="navbar">
       <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
       <nav>
-        {% for item in site.navbar %}
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        {% endfor %}
+        {% if site.navbar %}
+          {% for item in site.navbar %}
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endfor %}
+        {% endif %}
       </nav>
     </header>
 
+    <!-- ===== Page content ===== -->
     <main class="content">
       {{ content }}
     </main>
 
+    <!-- ===== Footer ===== -->
     <footer class="footer">
-      <p>© {{ site.time | date: "%Y" }} {{ site.author.name }} · 
-        <a href="https://github.com/{{ site.author.github }}">GitHub</a>
+      <p>
+        © {{ site.time | date: "%Y" }} {{ site.author.name }}
+        · <a href="https://github.com/{{ site.author.github }}">GitHub</a>
       </p>
     </footer>
   </body>
