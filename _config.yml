@@ -5,7 +5,7 @@ description: "Microbial Ecologist · Game Developer · Science Communicator"
 
 url: "https://l-gallucci.github.io"
 baseurl: ""
-theme: "minimal"
+theme: null
 markdown: kramdown
 
 # === Author info ===
@@ -30,7 +30,6 @@ navbar:
 include:
   - assets
   - _pages
-  - .nojekyll
 
 # === Plugins (safe for GitHub Pages) ===
 plugins:
