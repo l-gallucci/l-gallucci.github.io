@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
 
-    <title>
-      {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
-    </title>
-
-    <!-- Meta -->
-    <meta name="description" content="{{ site.description | escape }}" />
-    <meta name="author" content="{{ site.author.name | escape }}" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}" />
+    <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.author.name }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
 
     <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-
-    <!-- Optional Dark Mode Meta -->
-    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
 
   <body>
-    <!-- === Navbar === -->
-    <header class="navbar">
-      <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+    <!-- Navbar -->
+    <header class="top-nav">
       <nav>
-        {% for item in site.navbar %}
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        {% endfor %}
+        <a href="/" class="nav-link" data-page="/"> <i>⌘</i> Home</a>
+        <a href="/about/" class="nav-link" data-page="/about/">About</a>
+        <a href="/research/" class="nav-link" data-page="/research/">Research</a>
+        <a href="/creative/" class="nav-link" data-page="/creative/">Creative</a>
+        <a href="/contact/" class="nav-link" data-page="/contact/">Contact</a>
       </nav>
     </header>
 
-    <!-- === Main Content === -->
+    <!-- Main content -->
     <main class="content">
       {{ content }}
     </main>
 
-    <!-- === Footer === -->
+    <!-- Footer -->
     <footer class="footer">
-      <p>
-        © {{ site.time | date: "%Y" }} {{ site.author.name }} ·
+      <p>© {{ site.time | date: "%Y" }} {{ site.author.name }} · 
         <a href="https://github.com/{{ site.author.github }}">GitHub</a>
       </p>
     </footer>
+
+    <!-- Optional page-specific scripts -->
+    {% if page.scripts %}
+      {% for script in page.scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+
+    <script>
+    // Highlight active page tab automatically
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPath = window.location.pathname;
+      const links = document.querySelectorAll('.nav-link');
+
+      links.forEach(link => {
+        const page = link.getAttribute('data-page');
+        if (currentPath === page) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
   </body>
 </html>

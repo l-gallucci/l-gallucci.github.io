@@ -1,192 +1,293 @@
-/* === Global Variables === */
+/* === GLOBAL VARIABLES === */
 :root {
-  --bg: #f8f9fa;
-  --text: #222;
-  --accent: #0077b6;
-  --accent-light: #90e0ef;
-  --radius: 14px;
-  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --bg: #282828; /* uniform gray background */
+  --text: #e6edf3;
+  --accent: #00d400;
+  --shadow: 0 4px 12px rgba(0,0,0,0.4);
   --transition: all 0.25s ease;
 }
 
-/* === Dark Mode === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --text: #e6edf3;
-    --accent: #58a6ff;
-    --accent-light: #1f6feb;
-    --shadow: 0 4px 10px rgba(0,0,0,0.6);
-  }
-  body { background: var(--bg); color: var(--text); }
-  .navbar, .card, .footer { background: #161b22; }
+
+/* === Global reset === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;  /* ✅ permette solo uno scroll verticale minimo */
+  overflow-x: hidden;
 }
 
-/* === Body === */
+/* === BASE BODY === */
 body {
-  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
   margin: 0;
   line-height: 1.6;
-  transition: var(--transition);
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
 }
 
-/* === Navbar === */
-.navbar {
-  position: sticky;
+
+/* === NAVBAR STILE SAFARI === */
+/* === Top Navigation – Safari-style with subtle separation and active effect === */
+.top-nav {
+  position: fixed;
   top: 0;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.6rem 1.5rem;
+  background: #1e1e1e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 1000;
-  transition: var(--transition);
 }
-.navbar a {
-  color: var(--accent);
+
+/* Unified nav bar */
+.top-nav nav {
+  display: flex;
+  gap: 4px; /* ← leggero distacco tra i pulsanti */
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+/* Tabs */
+.top-nav nav a {
+  color: #e6edf3;
   text-decoration: none;
-  margin-left: 1.2rem;
+  padding: 0.55rem 1.4rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  transition: var(--transition);
+  background: #2b2b2b;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.navbar a:hover {
-  color: var(--accent-light);
+
+/* Home icon */
+.top-nav nav a i {
+  font-style: normal;
+  color: #00d400;
+  background: rgba(0, 212, 0, 0.15);
+  border-radius: 5px;
+  padding: 0.15rem 0.3rem;
+  font-weight: 700;
+}
+
+/* Hover */
+.top-nav nav a:hover {
+  background: rgba(255,255,255,0.12);
+  color: #00d400;
   transform: translateY(-1px);
 }
-.logo {
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.3px;
+
+/* Active tab – "pressed" Safari effect */
+.top-nav nav a.active {
+  background: rgba(0, 212, 0, 0.18);
+  color: #00d400;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4),
+              inset 0 -2px 4px rgba(255, 255, 255, 0.05);
+  transform: translateY(0);
 }
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: rgba(22, 27, 34, 0.8);
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-  }
+
+/* Remove inner glow on hover for active tab */
+.top-nav nav a.active:hover {
+  background: rgba(0, 212, 0, 0.22);
 }
-/* === Hero Section (developer style) === */
-.hero {
+
+/* === PAGE STRUCTURE === */
+.terminal-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 6rem 1rem 4rem;
-  background: #f9fafb;
-  color: var(--text);
-}
-
-.hero img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1.5rem;
-  border: 3px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-
-.hero-text h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--accent);
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  margin-bottom: 0.3rem;
-}
-
-.hero-text p {
-  color: #555;
-  font-size: 1.05rem;
-  margin-bottom: 1.2rem;
-}
-
-/* Buttons – flat style */
-.btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  margin: 0.3rem;
-  transition: all 0.2s ease;
-}
-.btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-1px);
-}
-.btn.secondary {
-  background: transparent;
-  border: 1.5px solid var(--accent);
-  color: var(--accent);
-}
-.btn.secondary:hover {
-  background: var(--accent);
-  color: white;
-}
-
-/* === Content === */
-.content { max-width: 900px; margin: auto; padding: 2rem; }
-section h2 { margin-top: 3rem; font-size: 1.8rem; color: var(--accent); }
-
-/* === Cards === */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-.card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: var(--transition);
-}
-.card:hover { transform: translateY(-4px); }
-.card img { width: 100%; display: block; }
-.card h3 { margin: 1rem; }
-.card p { margin: 0 1rem 1rem; color: #555; }
-.card .btn { margin: 0 1rem 1.5rem; }
-
-/* === Footer === */
-.footer {
-  text-align: center;
-  padding: 2rem;
-  color: #666;
-  font-size: 0.9rem;
+  justify-content: flex-start;     /* centra verticalmente tutto */
+  height: 100vh;               /* tutta la finestra */
   background: var(--bg);
-  border-top: 1px solid rgba(0,0,0,0.05);
-}
-.footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-.footer a:hover {
-  text-decoration: underline;
-}
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background: #161b22;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    color: #aaa;
-  }
-  .footer a { color: var(--accent-light); }
+  overflow: hidden;            /* 🔒 rimuove lo scroll */
+  padding-top: 160px;
 }
 
-/* === Animations === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+/* === PROFILE SECTION === */
+.profile-section {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  z-index:1;
+}
+
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 0.6rem;
+  color: #fff;
+  z-index: 1;
+}
+
+.definition-line {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 0.3rem 0 0.8rem 0;
+  line-height: 1.3;
+}
+
+/* === TERMINAL WINDOW === */
+.terminal-container {
+  background: #1e1e1e;
+  border-radius: 10px;
+  width: 1000px;
+  max-width: 95%;
+  min-height: 190px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  color: white;
+  font-size: 1rem;
+  animation: slideDown 0.6s ease-out;
+  overflow: hidden;
+  z-index: 2;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* === Responsive tweaks === */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: #2b2b2b;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.terminal-body {
+  padding: 1rem 1.5rem;
+  min-height: 100px;
+  line-height: 1.4;
+}
+
+.terminal-line {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;       /* ✅ permette l’andata a capo automatica */
+  word-break: break-word;    /* ✅ forza il testo a spezzarsi se serve */
+  color: #e6edf3;
+  max-width: 90%;            /* 🔹 evita che il testo tocchi i bordi */
+  margin: 0 auto;
+}
+
+/* === Terminal Tabs === */
+.terminal-tabs {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.tab {
+  font-size: 0.9rem;
+  color: #aaa;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  color: #00d400; /* verde brillante */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* === TYPING EFFECT === */
+#typed-text::after {
+  content: '▌';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* === FOOTER === */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  color: #ccc;
+  font-size: 0.9rem;
+  background: #1e1e1e;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+/* === DNA Background Canvas === */
+#dnaCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;     /* sempre la larghezza reale */
+  height: 100vh;    /* sempre l’altezza reale */
+  z-index: 0;      /* dietro tutto */
+  display: block;
+  background: '#141414ff'; /* colore di base */
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .hero { flex-direction: column; text-align: center; }
-  .navbar { flex-direction: column; gap: .5rem; }
+    .top-nav {
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.5rem;
+  }
+  .top-nav nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .profile-photo { width: 140px; height: 140px; }
+  .profile-name { font-size: 1.5rem; }
+  .terminal-container { width: 90%; }
+  .definition-line { font-size: 1.1rem; }
 }
