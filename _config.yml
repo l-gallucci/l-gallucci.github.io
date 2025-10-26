@@ -1,17 +1,19 @@
 title: "Luigi Gallucci"
 description: "Microbial Ecologist · Game Developer · Science Communicator"
+
+# === GitHub Pages configuration ===
+
 url: "https://luigallucci.github.io"
-baseurl: ""
+baseurl: "/lgallucc.github.io"
 theme: null
 markdown: kramdown
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
+
+# === Author info ===
 
 author:
   name: "Luigi Gallucci"
   email: "lgallucc@mpi-bremen.de"
-  github: "luigigallucci"
+  github: "luigallucci"
   orcid: "0000-0000-0000-0000"
 
 navbar:
@@ -24,6 +26,13 @@ navbar:
   - title: "Contact"
     url: /contact/
 
+# === Include static assets ===
 include:
-  - _pages
   - assets
+  - _pages
+  - .nojekyll
+
+# === Plugins (safe for GitHub Pages) ===
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
