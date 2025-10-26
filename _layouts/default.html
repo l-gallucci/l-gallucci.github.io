@@ -3,18 +3,39 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | {{ site.title }}</title>
 
-    <meta name="description" content="{{ site.description }}">
-    <meta name="author" content="{{ site.author.name }}">
-    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
+    <!-- Title & Description -->
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ site.description | escape }}">
+    <meta name="author" content="{{ site.author.name | default: site.title }}">
+
+    <!-- SEO: jekyll-seo-tag -->
+    {% seo %}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ site.url }}{{ site.logo | default: '/assets/img/profile.jpg' }}">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
+    <meta name="twitter:image" content="{{ site.url }}{{ site.logo | default: '/assets/img/profile.jpg' }}">
+    <meta name="twitter:creator" content="@{{ site.author.twitter | default: site.author.github }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
   </head>
 
   <body>

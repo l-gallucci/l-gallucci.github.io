@@ -1,5 +1,5 @@
 title: "Luigi Gallucci"
-description: "Microbial Ecologist · Game Developer · Science Communicator"
+description: "Microbial ecology, coding, and cooking tips"
 
 # === GitHub Pages configuration ===
 
@@ -35,3 +35,4 @@ include:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
