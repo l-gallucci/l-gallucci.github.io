@@ -36,7 +36,7 @@ window.addEventListener("DOMContentLoaded", () => {
       this.x += Math.sin(this.wobble) * 0.5 + this.speedX;
       this.speedX += 0.01;
       this.speedY *= 0.995;
-      this.life -= 0.0025;
+      this.life -= 0.0015;
       this.opacity = Math.max(0, this.life);
       this.size += 0.4;
     }
@@ -183,7 +183,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const { ventX, ventY } = drawVent();
 
     // Maintain constant plume density
-    if (particles.length < 600) createParticles(ventX, ventY);
+    // Maintain continuous particle generation (never stops)
+    if (particles.length < 1000) {
+      createParticles(ventX, ventY);
+    } else if (particles.length > 1200) {
+      // occasional cleanup to avoid memory buildup
+      particles.splice(0, Math.floor(particles.length / 4));
+    }
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
