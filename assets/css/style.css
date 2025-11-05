@@ -273,26 +273,26 @@ body {
 }
 
 /* === FOOTER === */
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  padding: 1rem;
-  color: #ccc;
-  font-size: 0.9rem;
+/* === FOOTER === */
+footer {
   background: #1e1e1e;
+  color: #888;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.8rem 0;
   border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  z-index: 10;
 }
 
-.footer a {
-  color: white;
+footer a {
+  color: #00d400;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-.footer a:hover {
-  color: var(--accent);
+footer a:hover {
+  text-decoration: underline;
 }
 
 /* === DNA Background Canvas === */
