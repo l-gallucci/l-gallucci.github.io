@@ -1,65 +1,58 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* no scroll */
-}
-
+/* === Canvas vent: sfondo dietro tutto === */
 #ventCanvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
   background: transparent;
+  pointer-events: none;
 }
 
+/* === Wrapper pagina: riempi l'altezza di <main> e centra === */
 .about-page {
   position: relative;
   z-index: 10;
-  width: 100%;
-  height: 100vh;
+  min-height: 100%;            /* <-- riempi l’altezza del MAIN, non del viewport */
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #e6edf3;
-  font-family: "JetBrains Mono", monospace;
-  overflow: hidden;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 }
 
+/* === Box centrale sfumato === */
 .about-content {
-  background: rgba(15, 20, 22, 0.8);
+  background: linear-gradient(to bottom right,
+    rgba(15, 20, 22, 0.85),
+    rgba(10, 15, 18, 0.75));
   backdrop-filter: blur(10px);
   border-radius: 18px;
   padding: 3rem 2rem;
   max-width: 780px;
   width: 90%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: #e6edf3;
   border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
+/* Tipografia: evita che i margini spingano in basso */
 .about-content h1 {
   color: #00d400;
-  margin-bottom: 1.4rem;
+  margin: 0 0 1.4rem;          /* <-- niente margin-top */
   font-size: 1.8rem;
 }
 
 .about-content p {
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;            /* <-- niente margin-top */
+  font-size: 1rem;
 }
 
-/* Small devices (phones) */
+/* Mobile */
 @media (max-width: 600px) {
-  .about-content {
-    padding: 2rem 1.2rem;
-  }
-  .about-content h1 {
-    font-size: 1.4rem;
-  }
-  .about-content p {
-    font-size: 0.85rem;
-  }
+  .about-content { padding: 2rem 1.2rem; }
+  .about-content h1 { font-size: 1.4rem; }
+  .about-content p  { font-size: 0.85rem; }
 }

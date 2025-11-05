@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ page.title }} | {{ site.title }}</title>
+
+    <!-- === Meta & SEO === -->
+    <meta name="description" content="{{ site.description | escape }}">
+    <meta name="author" content="{{ site.author.name | default: site.title }}">
+
+    <!-- === Fonts & CSS === -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    {% if page.stylesheet %}
+      <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">
+    {% endif %}
+
+    <!-- === Favicon === -->
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
+  </head>
+
+  <body>
+    <!-- === HEADER === -->
+    {% include header.html %}
+
+    <!-- === MAIN CONTENT === -->
+    <main class="research-layout">
+      {{ content }}
+    </main>
+
+    <!-- === FOOTER === -->
+    {% include footer.html %}
+
+    <!-- === OPTIONAL PAGE SCRIPTS === -->
+    {% if page.scripts %}
+      {% for script in page.scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

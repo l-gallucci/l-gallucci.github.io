@@ -1,12 +1,22 @@
 /* === RESEARCH PAGE === */
 .research-page {
-  max-width: 1100px;
-  margin: 6rem auto 4rem;
-  padding: 0 1.5rem;
+  position: fixed;
+  top: 3.5rem;        /* sotto header */
+  bottom: 2.5rem;     /* sopra footer */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   color: #e6edf3;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  min-height: 100vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;   /* scroll interno solo se necessario */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 /* === HEADER === */
@@ -20,6 +30,7 @@
   color: #00d400;
   margin-bottom: 0.8rem;
   font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 212, 0, 0.3);
 }
 
 .research-header p {
@@ -30,7 +41,7 @@
   color: #cfcfcf;
 }
 
-/* === PUBLICATIONS SECTION === */
+/* === PUBLICATIONS === */
 .publications-section {
   margin-top: 2rem;
 }
@@ -43,7 +54,7 @@
   font-weight: 700;
 }
 
-/* === GRID LAYOUT === */
+/* === GRID === */
 .papers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -53,10 +64,10 @@
 
 /* === CARD === */
 .paper-card {
-  background: #161b22;
+  background: rgba(22, 27, 34, 0.9);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  padding: 1rem;
   transition: all 0.25s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   height: 100%;
@@ -70,7 +81,7 @@
   transform: translateY(-3px);
 }
 
-/* === THUMBNAIL + META === */
+/* === CARD CONTENT === */
 .paper-thumb {
   width: 22px;
   height: 22px;
@@ -96,7 +107,6 @@
   color: #aaa;
 }
 
-/* === TITLE === */
 .paper-card h3 {
   font-size: 0.9rem;
   color: #00d400;
@@ -115,7 +125,6 @@
   text-decoration: underline;
 }
 
-/* === AUTHORS === */
 .authors {
   font-size: 0.8rem;
   color: #cfcfcf;
@@ -128,26 +137,14 @@
   font-weight: 700;
 }
 
-/* === FOOTER FIX === */
-.footer {
-  margin-top: 3rem;
-}
-
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .research-page {
-    margin-top: 5rem;
-    padding: 0 1rem;
-  }
-
   .paper-card {
     padding: 0.8rem;
   }
-
   .paper-card h3 {
     font-size: 0.85rem;
   }
-
   .authors {
     font-size: 0.75rem;
   }

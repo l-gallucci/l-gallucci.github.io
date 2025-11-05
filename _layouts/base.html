@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }} | {{ site.title }}</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- CSS globale -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+    <!-- CSS specifico di pagina -->
+    {% if page.stylesheet %}
+      <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">
+    {% endif %}
+  </head>
+
+  <body>
+    {% include header.html %}
+    <main class="content">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

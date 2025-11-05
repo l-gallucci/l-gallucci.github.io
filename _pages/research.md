@@ -1,10 +1,9 @@
 ---
-layout: default
+layout: research
 title: "Research"
 permalink: /research/
+stylesheet: /assets/css/research.css
 ---
-
-<link rel="stylesheet" href="{{ '/assets/css/research.css' | relative_url }}">
 
 <section class="research-page">
 
@@ -27,7 +26,7 @@ permalink: /research/
       <div class="paper-card">
         <img src="https://media.springernature.com/full/springer-static/favicon/favicon-32x32.png" alt="Nature logo" class="paper-thumb">
         <div class="paper-meta">
-          <span class="journal">Scientific Reports </span>
+          <span class="journal">Scientific Reports</span>
           <span class="year">2025</span>
         </div>
         <h3>
@@ -54,11 +53,11 @@ permalink: /research/
           </a>
         </h3>
         <p class="authors">
-          A. C. Pelliciari Silva, F. Migliaccio, B. Barosa, <strong> L. Gallucci</strong>, M. Yücel, D. Foustoukos, N. Le Bris, S. J. Bartlett, V. D’Alessandro, C. Vetriani, D. Giovannelli
+          A. C. Pelliciari Silva, F. Migliaccio, B. Barosa, <strong>L. Gallucci</strong>, M. Yücel, D. Foustoukos, N. Le Bris,
+          S. J. Bartlett, V. D’Alessandro, C. Vetriani, D. Giovannelli
         </p>
       </div>
 
     </div>
   </div>
-
 </section>

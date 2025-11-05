@@ -1,0 +1,147 @@
+/* === HOME PAGE TERMINAL BOX === */
+
+/* Layout centrale */
+.terminal-page {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 96px); /* spazio per header e footer */
+  text-align: center;
+}
+
+/* Profile photo + name */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 0.8rem;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  color: #e6edf3;
+  font-weight: 700;
+}
+
+/* === Terminal Container (Fixed Size) === */
+/* === Terminal Window (locked layout) === */
+.terminal-container {
+  position: relative;
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 10px;
+  width: 900px;             /* dimensione fissa e stabile */
+  max-width: 90vw;          /* margine sicurezza schermo */
+  height: 220px;            /* fissa verticalmente */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  opacity: 1;
+
+  /* blocco di qualsiasi influsso esterno */
+  flex: none !important;
+  transform: none !important;
+  transition: none !important;
+
+  /* no animazioni che toccano bounding box */
+  will-change: opacity;  /* solo trasparenza */
+}
+
+/* Header del terminale */
+/* === MAC-STYLE DOTS (perfectly aligned & grouped) === */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 1rem; /* tighter vertical space */
+  background: rgba(30, 30, 30, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Container for dots */
+.terminal-dots {
+  display: flex;
+  gap: 6px; /* compact spacing like macOS */
+  align-items: center;
+}
+
+/* Individual dots */
+.terminal-dots .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+
+/* === Extra: prevent tab text from shifting === */
+.terminal-tabs {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.9rem;
+  color: #8b949e;
+  white-space: nowrap;
+  flex-wrap: wrap;      /* ensures they never disappear */
+  justify-content: flex-start;
+  overflow: hidden;     /* keeps clean borders */
+}
+
+/* === Terminal Body === */
+.terminal-body {
+  flex: 1;
+  padding: 1.5rem;
+  text-align: left;
+  overflow-y: auto;     /* allow inner scroll if text exceeds */
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+
+/* Text animation area */
+.typing {
+  font-family: "JetBrains Mono", monospace;
+  color: #e6edf3;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tab.active {
+  color: #00d400;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: default;
+}
+
+.tab:hover {
+  color: #00d400;
+  cursor: pointer;
+}
+
+@keyframes fadeInStable {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

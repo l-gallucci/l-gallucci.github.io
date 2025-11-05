@@ -182,9 +182,8 @@ window.addEventListener("DOMContentLoaded", () => {
   function animate() {
     const { ventX, ventY } = drawVent();
 
-    if (Math.random() < 0.9) {
-      createParticles(ventX, ventY);
-    }
+    // Maintain constant plume density
+    if (particles.length < 600) createParticles(ventX, ventY);
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
