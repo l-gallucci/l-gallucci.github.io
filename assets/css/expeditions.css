@@ -1,0 +1,47 @@
+#expeditions-container {
+  text-align: center;
+  padding-top: 4.5rem;
+  color: #e6edf3;
+}
+
+#expeditions-container h1 {
+  color: #00d400;
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #a0a0a0;
+  margin-bottom: 1.5rem;
+}
+
+#map {
+  width: 90%;
+  height: 70vh;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Popup styling */
+.leaflet-popup-content-wrapper {
+  background: #1e1e1e;
+  color: #e6edf3;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.leaflet-popup-tip {
+  background: #1e1e1e;
+}
+
+.popup-logo {
+  width: 60px;
+  height: auto;
+  margin-bottom: 6px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

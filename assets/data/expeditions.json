@@ -1,0 +1,24 @@
+[
+  {
+    "id": "SO301",
+    "name": "SO301 – Kairei Vent Field",
+    "year": "2023",
+    "region": "Indian Ocean",
+    "ship": "R/V Sonne",
+    "description": "Sampling hydrothermal plumes along the Central Indian Ridge near the Kairei Vent Field, integrating multidisciplinary approaches to study biogeochemical cycles.",
+    "coords": [-25.33, 70.03],
+    "logo": "/assets/icons/LogoSO301.png",
+    "link": "https://www.bodc.ac.uk/resources/inventories/cruise_inventory/report/17707/"
+  },
+  {
+    "id": "M210",
+    "name": "M210 – Mid-Atlantic Ridge Expedition",
+    "year": "2019",
+    "region": "Mid-Atlantic Ridge",
+    "ship": "R/V Meteor",
+    "description": "Study of microbial and chemical gradients across Mid-Atlantic hydrothermal plumes.",
+    "coords": [36.230, -33.904],
+    "logo": "/assets/icons/M210.png",
+    "link": "https://www.bodc.ac.uk/resources/inventories/cruise_inventory/report/17589/"
+  }
+]
