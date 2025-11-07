@@ -8,17 +8,28 @@
     "description": "Sampling hydrothermal plumes along the Central Indian Ridge near the Kairei Vent Field, integrating multidisciplinary approaches to study biogeochemical cycles.",
     "coords": [-25.33, 70.03],
     "logo": "/assets/icons/LogoSO301.png",
-    "link": "https://www.bodc.ac.uk/resources/inventories/cruise_inventory/report/17707/"
+    "status": "past"
   },
   {
     "id": "M210",
     "name": "M210 – Mid-Atlantic Ridge Expedition",
-    "year": "2019",
+    "year": "2025",
     "region": "Mid-Atlantic Ridge",
     "ship": "R/V Meteor",
     "description": "Study of microbial and chemical gradients across Mid-Atlantic hydrothermal plumes.",
     "coords": [36.230, -33.904],
     "logo": "/assets/icons/M210.png",
-    "link": "https://www.bodc.ac.uk/resources/inventories/cruise_inventory/report/17589/"
+    "status": "past"
+  },
+  {
+    "id": "GREAT",
+    "name": "Greenland Spreading Zone: Exploring Extreme Habitats in Arctic seamounts and hydrothermal vents (GREAT)",
+    "year": "2026",
+    "region": "Greenland Spreading Zone",
+    "ship": "R/V Celtic Explorer",
+    "description": "",
+    "coords": [70.891, -51.0],
+    "logo": "/assets/icons/.png",
+    "status": "future"
   }
 ]

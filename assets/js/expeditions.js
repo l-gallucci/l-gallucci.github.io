@@ -1,6 +1,5 @@
 // === Expeditions Map ===
 document.addEventListener("DOMContentLoaded", () => {
-  // Load Leaflet
   const leafletCss = document.createElement("link");
   leafletCss.rel = "stylesheet";
   leafletCss.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
@@ -29,13 +28,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const response = await fetch("/assets/data/expeditions.json");
     const expeditions = await response.json();
 
-    // Add markers
     expeditions.forEach((exp) => {
+      let color;
+      switch (exp.status) {
+        case "future":
+          color = "#58a6ff"; // blu chiaro
+          break;
+        case "ongoing":
+          color = "#f78f2e"; // arancio
+          break;
+        default:
+          color = "#d41500"; // verde per passate
+      }
+
       const marker = L.circleMarker(exp.coords, {
-        radius: 6,
-        color: "#00d400",
-        fillColor: "#00d400",
-        fillOpacity: 0.8,
+        radius: 7,
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.85,
+        weight: 1,
       }).addTo(map);
 
       const popupHtml = `
@@ -45,13 +56,21 @@ document.addEventListener("DOMContentLoaded", () => {
           <span style="font-size:0.85rem; color:#aaa;">${exp.year} · ${exp.ship}</span><br>
           <em style="font-size:0.8rem;">${exp.region}</em><br>
           <p style="font-size:0.8rem; color:#ccc; margin-top:6px;">${exp.description}</p>
-          <a href="${exp.link}" target="_blank" style="font-size:0.8rem; color:#58a6ff;">Cruise Report ↗</a>
+          <span style="font-size:0.75rem; display:block; margin-top:5px; color:${color}; font-weight:600;">
+            ${exp.status === "future" ? "Upcoming Expedition" :
+              exp.status === "ongoing" ? "Ongoing Mission" :
+              "Completed Expedition"}
+          </span>
+          <a href="${exp.link}" target="_blank" style="font-size:0.8rem; color:#58a6ff; text-decoration:none;">Cruise Report ↗</a>
         </div>
       `;
 
-      marker.bindPopup(popupHtml);
-      marker.on("mouseover", () => marker.openPopup());
-      marker.on("mouseout", () => marker.closePopup());
+      marker.bindPopup(popupHtml, {
+        closeButton: true,
+        autoClose: true,
+        closeOnClick: true,
+        className: "expedition-popup",
+      });
     });
   }
 });

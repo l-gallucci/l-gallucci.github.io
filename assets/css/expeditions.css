@@ -45,3 +45,13 @@
   margin-left: auto;
   margin-right: auto;
 }
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.past { background-color: #d41500; }
+.ongoing { background-color: #f78f2e; }
+.future { background-color: #58a6ff; }
