@@ -45,13 +45,53 @@
   margin-left: auto;
   margin-right: auto;
 }
-.dot {
-  display: inline-block;
+
+/* === LEGEND – ATTACHED TO MAP SIDE === */
+.legend-vertical {
+  position: absolute;
+  top: 50%;
+  right: 300px; /* aderente al bordo interno */
+  transform: translateY(-50%);
+  background: rgba(22, 27, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #e6edf3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 500;
+  pointer-events: none; /* non blocca la mappa */
+}
+
+.legend-vertical div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-vertical .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin-right: 6px;
 }
-.past { background-color: #d41500; }
-.ongoing { background-color: #f78f2e; }
-.future { background-color: #58a6ff; }
+
+.dot.past { background-color: #d41500; }
+.dot.future { background-color: #58a6ff; }
+
+/* === MOBILE OPTIMIZATION === */
+@media (max-width: 768px) {
+  .legend-vertical {
+    right: 5px;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.5rem;
+    gap: 0.3rem;
+  }
+  .legend-vertical .dot {
+    width: 8px;
+    height: 8px;
+  }
+}

@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
         case "future":
           color = "#58a6ff"; // blu chiaro
           break;
-        case "ongoing":
-          color = "#f78f2e"; // arancio
-          break;
         default:
           color = "#d41500"; // verde per passate
       }
@@ -61,8 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
               exp.status === "ongoing" ? "Ongoing Mission" :
               "Completed Expedition"}
           </span>
-          <a href="${exp.link}" target="_blank" style="font-size:0.8rem; color:#58a6ff; text-decoration:none;">Cruise Report ↗</a>
-        </div>
       `;
 
       marker.bindPopup(popupHtml, {
