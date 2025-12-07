@@ -39,7 +39,12 @@ html, body {
   border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  gap: 1rem; /* Evita collisioni */
+  gap: 1rem;
+}
+
+/* NUOVO: Nascondi il tasto hamburger su desktop */
+.mobile-toggle {
+  display: none;
 }
 
 /* Container dei bottoni */
@@ -49,7 +54,6 @@ html, body {
   background: rgba(255, 255, 255, 0.03);
   padding: 3px;
   border-radius: 8px;
-  /* Se lo schermo si stringe, permetti lo scroll o wrap controllato */
   flex-wrap: nowrap; 
 }
 
@@ -64,7 +68,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  white-space: nowrap; /* Evita che il testo "Home" vada a capo */
+  white-space: nowrap;
 }
 
 .top-nav nav a:hover {
@@ -89,7 +93,7 @@ html, body {
   display: flex;
   gap: 0.8rem;
   align-items: center;
-  flex-shrink: 0; /* Impedisce che le icone vengano schiacciate */
+  flex-shrink: 0;
 }
 
 .social-icons img {
@@ -135,29 +139,84 @@ main.content {
 .site-footer a { color: var(--accent); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 
-/* === RESPONSIVE (MOBILE) === */
+/* === RESPONSIVE (MOBILE - MENU A TENDINA) === */
 @media (max-width: 768px) {
-  .top-nav {
-    flex-direction: column;
-    height: auto;
-    padding: 0.8rem 0.5rem;
-    gap: 0.8rem;
-    align-items: stretch; /* Occupa tutta la larghezza */
-  }
-
-  .top-nav nav {
-    width: 100%;
-    overflow-x: auto; /* Scroll orizzontale su mobile */
-    padding-bottom: 5px;
-    justify-content: flex-start;
-  }
   
-  .social-icons {
-    justify-content: center;
-    padding-top: 5px;
+  /* 1. Reset della navbar: torna orizzontale e compatta */
+  .top-nav {
+    flex-direction: row; /* Importante: icone e hamburger sulla stessa riga */
+    height: 3.5rem;      /* Altezza standard */
+    padding: 0 1rem;
+    align-items: center;
   }
 
+  /* 2. Mostra e stila il tasto Hamburger */
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px; height: 30px;
+    z-index: 2001; /* Sopra a tutto */
+  }
+
+  .mobile-toggle span {
+    display: block; width: 100%; height: 2px;
+    background: #fff; border-radius: 2px; transition: all 0.3s;
+  }
+
+  /* Animazione Hamburger -> X quando ha la classe .open */
+  .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+  .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* 3. Il Menu diventa una tendina a scomparsa */
+  .top-nav nav {
+    position: fixed;
+    top: 3.5rem; /* Subito sotto la header */
+    left: 0; width: 100%;
+    flex-direction: column;
+    align-items: center;
+    
+    background: rgba(13, 17, 23, 0.98); /* Sfondo scuro */
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    gap: 1rem;
+    
+    /* Stato Nascosto */
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    z-index: 1999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  /* Stato Visibile (aggiunto da JS) */
+  .top-nav nav.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Link grandi per il touch */
+  .top-nav nav a {
+    width: 90%; justify-content: center; padding: 1rem; font-size: 1.1rem;
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* 4. Reset del padding main (non serve più 150px perché il menu è chiuso) */
   main.content {
-    padding-top: 150px; /* Più spazio per la navbar doppia */
+    padding-top: 4rem; 
+  }
+
+  /* 5. Le icone social restano a destra */
+  .social-icons {
+    margin-left: auto;
+    justify-content: flex-end;
+    padding-top: 0;
   }
 }

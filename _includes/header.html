@@ -1,5 +1,12 @@
 <header class="top-nav">
-  <nav>
+  
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="navLinks">
     <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">
       {% if page.url == '/' %}<i>></i>{% endif %} Home
     </a>
@@ -13,25 +20,24 @@
       Expeditions
     </a>
     <a href="{{ '/blog/' | relative_url }}" class="{% if page.url contains '/blog/' or page.layout == 'post' %}active{% endif %}">
-    Blog
-  </a>
+      Blog
+    </a>
   </nav>
 
   <div class="social-icons">
-    <a href="https://github.com/l-gallucci" target="_blank" aria-label="GitHub">
-      <img src="{{ '/assets/icons/github-bw.svg' | relative_url }}" alt="GitHub">
-    </a>
-    <a href="https://www.linkedin.com/in/luigi-gallucci-scientificprofile/" target="_blank" aria-label="LinkedIn">
-      <img src="{{ '/assets/icons/linkedin-bw.png' | relative_url }}" alt="LinkedIn">
-    </a>
-    <a href="https://bsky.app/profile/luigallucci.bsky.social" target="_blank" aria-label="Bluesky">
-      <img src="{{ '/assets/icons/bluesky-bw.svg' | relative_url }}" alt="Bluesky">
-    </a>
-    <a href="https://x.com/luigallucci" target="_blank" aria-label="X">
-      <img src="{{ '/assets/icons/x-bw.svg' | relative_url }}" alt="X">
-    </a>
-    <a href="https://www.instagram.com/luigigallucci_?igsh=MTZmdnBnanNnZTE1Mg%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram">
-      <img src="{{ '/assets/icons/instagram-bw.svg' | relative_url }}" alt="Instagram">
-    </a>
+    <a href="https://github.com/l-gallucci" target="_blank"><img src="{{ '/assets/icons/github-bw.svg' | relative_url }}" alt="GitHub"></a>
+    <a href="https://www.linkedin.com/in/luigi-gallucci-scientificprofile/" target="_blank"><img src="{{ '/assets/icons/linkedin-bw.png' | relative_url }}" alt="LinkedIn"></a>
+    <a href="https://bsky.app/profile/luigallucci.bsky.social" target="_blank"><img src="{{ '/assets/icons/bluesky-bw.svg' | relative_url }}" alt="Bluesky"></a>
+    <a href="https://x.com/luigallucci" target="_blank"><img src="{{ '/assets/icons/x-bw.svg' | relative_url }}" alt="X"></a>
+    <a href="https://www.instagram.com/luigigallucci_?igsh=MTZmdnBnanNnZTE1Mg%3D%3D&utm_source=qr" target="_blank"><img src="{{ '/assets/icons/instagram-bw.svg' | relative_url }}" alt="Instagram"></a>
   </div>
+
 </header>
+
+<script>
+  // Script per aprire/chiudere il menu su mobile
+  document.getElementById('mobileToggle').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('navLinks').classList.toggle('show');
+  });
+</script>
