@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title }} | {{ site.title }}</title>
 
-    <!-- Fonts -->
+    {% seo %}
+    {% feed_meta %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-    <!-- CSS globale -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-    <!-- CSS specifico di pagina -->
-    {% if page.stylesheet %}
-      <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">
+    {% assign custom_css = page.stylesheet | default: layout.stylesheet %}
+    {% if custom_css %}
+      <link rel="stylesheet" href="{{ custom_css | relative_url }}">
     {% endif %}
   </head>
 
   <body>
     {% include header.html %}
+    
     <main class="content">
       {{ content }}
     </main>
+    
     {% include footer.html %}
   </body>
 </html>

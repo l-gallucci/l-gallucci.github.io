@@ -1,42 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+---
+layout: base
+---
 
-    <title>{{ page.title }} | {{ site.title }}</title>
+<section class="research-page">
 
-    <!-- === Meta & SEO === -->
-    <meta name="description" content="{{ site.description | escape }}">
-    <meta name="author" content="{{ site.author.name | default: site.title }}">
+  {{ content }}
 
-    <!-- === Fonts & CSS === -->
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    {% if page.stylesheet %}
-      <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">
-    {% endif %}
+  <div class="publications-section">
+    <h2>Publications</h2>
 
-    <!-- === Favicon === -->
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
-  </head>
-
-  <body>
-    <!-- === HEADER === -->
-    {% include header.html %}
-
-    <!-- === MAIN CONTENT === -->
-    <main class="research-layout">
-      {{ content }}
-    </main>
-
-    <!-- === FOOTER === -->
-    {% include footer.html %}
-
-    <!-- === OPTIONAL PAGE SCRIPTS === -->
-    {% if page.scripts %}
-      {% for script in page.scripts %}
-        <script src="{{ script | relative_url }}"></script>
+    <div class="papers-grid">
+      
+      {% for paper in site.data.papers %}
+      <div class="paper-card">
+        
+        {% if paper.icon %}
+        <img src="{{ paper.icon }}" alt="{{ paper.journal }} logo" class="paper-thumb">
+        {% endif %}
+        
+        <div class="paper-meta">
+          <span class="journal">{{ paper.journal }}</span>
+          <span class="year">{{ paper.year }}</span>
+        </div>
+        
+        <h3>
+          <a href="{{ paper.link }}" target="_blank">
+            {{ paper.title }}
+          </a>
+        </h3>
+        
+        <p class="authors">
+          {{ paper.authors }}
+        </p>
+      </div>
       {% endfor %}
-    {% endif %}
-  </body>
-</html>
+      </div>
+  </div>
+</section>

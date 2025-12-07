@@ -1,0 +1,50 @@
+---
+layout: base
+stylesheet: /assets/css/blog.css
+---
+
+<article class="post-layout">
+  
+  <header class="post-hero">
+    <h1 class="post-hero-title">{{ page.title }}</h1>
+    
+    <div class="post-hero-meta">
+      <span title="Date">
+        📅 {{ page.date | date: "%d %b %Y" }}
+      </span>
+      <span title="Reading Time">
+        ⏱️ {{ content | number_of_words | divided_by: 180 | plus: 1 }} min read
+      </span>
+    </div>
+
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <span class="tag-pill">#{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div class="post-navigation">
+    {% if page.previous %}
+      <a href="{{ page.previous.url | relative_url }}" class="nav-link prev">
+        <span class="nav-label">← Previous Post</span>
+        <span class="nav-title">{{ page.previous.title | truncatewords: 5 }}</span>
+      </a>
+    {% else %}
+      <div></div> {% endif %}
+
+    {% if page.next %}
+      <a href="{{ page.next.url | relative_url }}" class="nav-link next" style="text-align: right;">
+        <span class="nav-label">Next Post →</span>
+        <span class="nav-title">{{ page.next.title | truncatewords: 5 }}</span>
+      </a>
+    {% endif %}
+  </div>
+
+</article>

@@ -1,58 +1,44 @@
-/* === Canvas vent: sfondo dietro tutto === */
+/* Canvas sfondo */
 #ventCanvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background: transparent;
-  pointer-events: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
 }
 
-/* === Wrapper pagina: riempi l'altezza di <main> e centra === */
 .about-page {
   position: relative;
   z-index: 10;
-  min-height: 100%;            /* <-- riempi l’altezza del MAIN, non del viewport */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
-  box-sizing: border-box;
+  min-height: 60vh;
+  padding: 2rem;
 }
 
-/* === Box centrale sfumato === */
 .about-content {
-  background: linear-gradient(to bottom right,
-    rgba(15, 20, 22, 0.85),
-    rgba(10, 15, 18, 0.75));
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
-  padding: 3rem 2rem;
-  max-width: 780px;
-  width: 90%;
+  background: rgba(15, 20, 22, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 700px;
   text-align: center;
-  color: #e6edf3;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
-/* Tipografia: evita che i margini spingano in basso */
 .about-content h1 {
   color: #00d400;
-  margin: 0 0 1.4rem;          /* <-- niente margin-top */
-  font-size: 1.8rem;
+  margin-top: 0;
 }
 
 .about-content p {
-  line-height: 1.6;
-  margin: 0 0 1rem;            /* <-- niente margin-top */
-  font-size: 1rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-  .about-content { padding: 2rem 1.2rem; }
-  .about-content h1 { font-size: 1.4rem; }
-  .about-content p  { font-size: 0.85rem; }
+/* === MOBILE ABOUT === */
+@media (max-width: 768px) {
+  .about-content { padding: 1.5rem; width: 100%; }
+  .about-content h1 { font-size: 1.5rem; }
+  .about-content p { font-size: 0.95rem; }
 }

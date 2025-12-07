@@ -7,13 +7,14 @@ url: "https://l-gallucci.github.io"
 baseurl: ""
 theme: null
 markdown: kramdown
+permalink: /:title/
 
 # === Author info ===
 
 author:
   name: "Luigi Gallucci"
   email: "lgallucc@mpi-bremen.de"
-  github: "luigallucci"
+  github: "l-gallucci"
   orcid: "0000-0000-0000-0000"
 
 navbar:
@@ -36,3 +37,11 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - node_modules
+  - vendor

@@ -1,147 +1,141 @@
-/* === HOME PAGE TERMINAL BOX === */
-
-/* Layout centrale */
+/* === HOME PAGE LAYOUT === */
 .terminal-page {
-  position: relative;
-  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 96px); /* spazio per header e footer */
+  min-height: calc(100vh - 120px); /* Altezza viewport meno header/footer */
   text-align: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
-/* Profile photo + name */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === PROFILE SECTION === */
 .profile-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  z-index: 10;
 }
 
 .profile-photo {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 0.8rem;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  margin-bottom: 1rem;
 }
 
 .profile-name {
-  font-size: 1.8rem;
-  color: #e6edf3;
+  font-size: 2rem;
   font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* === Terminal Container (Fixed Size) === */
-/* === Terminal Window (locked layout) === */
+/* === TERMINAL WINDOW === */
 .terminal-container {
-  position: relative;
-  background: rgba(20, 20, 20, 0.85);
+  width: 900px;
+  max-width: 90vw;
+  height: 240px; /* Altezza fissa su desktop */
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  width: 900px;             /* dimensione fissa e stabile */
-  max-width: 90vw;          /* margine sicurezza schermo */
-  height: 220px;            /* fissa verticalmente */
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  opacity: 1;
-
-  /* blocco di qualsiasi influsso esterno */
-  flex: none !important;
-  transform: none !important;
-  transition: none !important;
-
-  /* no animazioni che toccano bounding box */
-  will-change: opacity;  /* solo trasparenza */
+  text-align: left;
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(5px);
 }
 
-/* Header del terminale */
-/* === MAC-STYLE DOTS (perfectly aligned & grouped) === */
+/* Header del terminale (Pallini Mac) */
 .terminal-header {
+  background: rgba(40, 40, 40, 0.95);
+  padding: 0.6rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.35rem 1rem; /* tighter vertical space */
-  background: rgba(30, 30, 30, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Container for dots */
 .terminal-dots {
   display: flex;
-  gap: 6px; /* compact spacing like macOS */
-  align-items: center;
+  gap: 8px;
 }
 
-/* Individual dots */
-.terminal-dots .dot {
-  width: 9px;
-  height: 9px;
+.dot {
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
 }
-
 .red { background: #ff5f56; }
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
 
-
-/* === Extra: prevent tab text from shifting === */
+/* Tabs del terminale */
 .terminal-tabs {
   display: flex;
   gap: 1.2rem;
-  font-size: 0.9rem;
-  color: #8b949e;
-  white-space: nowrap;
-  flex-wrap: wrap;      /* ensures they never disappear */
-  justify-content: flex-start;
-  overflow: hidden;     /* keeps clean borders */
 }
 
-/* === Terminal Body === */
-.terminal-body {
-  flex: 1;
-  padding: 1.5rem;
-  text-align: left;
-  overflow-y: auto;     /* allow inner scroll if text exceeds */
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.2) transparent;
-}
-
-.terminal-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.terminal-body::-webkit-scrollbar-thumb {
-  background-color: rgba(255,255,255,0.2);
-  border-radius: 3px;
-}
-
-/* Text animation area */
-.typing {
-  font-family: "JetBrains Mono", monospace;
-  color: #e6edf3;
-  font-size: 0.95rem;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.tab.active {
-  color: #00d400;
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: default;
-}
-
-.tab:hover {
-  color: #00d400;
+.tab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #888;
   cursor: pointer;
+  transition: color 0.2s;
 }
 
-@keyframes fadeInStable {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.tab:hover { color: #fff; }
+.tab.active { color: #00d400; font-weight: bold; }
+
+/* Corpo del terminale */
+.terminal-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e6edf3;
+}
+
+/* Cursore lampeggiante */
+.typing::after {
+  content: '▋';
+  color: #00d400;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Canvas DNA */
+#dnaCanvas {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+
+/* === MOBILE HOME === */
+@media (max-width: 768px) {
+  .terminal-container {
+    width: 95% !important;
+    height: auto !important;
+    min-height: 250px;
+  }
+  
+  .terminal-tabs {
+    display: none; /* Nascondi tabs su mobile se troppo stretti, o usa flex-wrap */
+  }
+  
+  .profile-photo { width: 100px; height: 100px; }
+  .profile-name { font-size: 1.5rem; }
+  .terminal-body { padding: 1rem; font-size: 0.9rem; }
 }

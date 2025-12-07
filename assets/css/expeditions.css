@@ -1,18 +1,18 @@
 #expeditions-container {
   text-align: center;
-  padding-top: 4.5rem;
-  color: #e6edf3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #expeditions-container h1 {
   color: #00d400;
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #a0a0a0;
+  color: #8b949e;
   margin-bottom: 1.5rem;
 }
 
@@ -21,77 +21,42 @@
   height: 70vh;
   margin: 0 auto;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-
-/* Popup styling */
-.leaflet-popup-content-wrapper {
-  background: #1e1e1e;
-  color: #e6edf3;
-  border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  z-index: 1;
 }
 
-.leaflet-popup-tip {
-  background: #1e1e1e;
-}
-
-.popup-logo {
-  width: 60px;
-  height: auto;
-  margin-bottom: 6px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* === LEGEND – ATTACHED TO MAP SIDE === */
+/* Legenda Mappa */
 .legend-vertical {
   position: absolute;
   top: 50%;
-  right: 300px; /* aderente al bordo interno */
+  right: 6%; /* Distanza relativa */
   transform: translateY(-50%);
-  background: rgba(22, 27, 34, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(22, 27, 34, 0.9);
+  padding: 10px;
   border-radius: 8px;
-  padding: 0.5rem 0.7rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: #e6edf3;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 0.9rem;
   z-index: 500;
-  pointer-events: none; /* non blocca la mappa */
 }
 
 .legend-vertical div {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex; align-items: center; gap: 8px; margin: 5px 0;
 }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.past { background: #d41500; }
+.future { background: #58a6ff; }
 
-.legend-vertical .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.dot.past { background-color: #d41500; }
-.dot.future { background-color: #58a6ff; }
-
-/* === MOBILE OPTIMIZATION === */
+/* === MOBILE EXPEDITIONS === */
 @media (max-width: 768px) {
+  #map { width: 100%; height: 60vh; border-radius: 0; }
+  
   .legend-vertical {
-    right: 5px;
-    font-size: 0.7rem;
-    padding: 0.4rem 0.5rem;
-    gap: 0.3rem;
-  }
-  .legend-vertical .dot {
-    width: 8px;
-    height: 8px;
+    top: auto;
+    bottom: 80px; /* Sopra il footer */
+    right: 10px;
+    transform: none;
+    font-size: 0.75rem;
   }
 }

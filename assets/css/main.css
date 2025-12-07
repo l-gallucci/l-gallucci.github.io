@@ -1,15 +1,25 @@
-/* === BASE === */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "JetBrains Mono", monospace;
-  color: #e6edf3;
-  background: #0d1117;
-  overflow: hidden; /* blocca lo scroll globale */
+/* === GLOBAL VARIABLES === */
+:root {
+  --bg: #0d1117;       /* Sfondo scuro GitHub style */
+  --text: #e6edf3;     /* Testo chiaro */
+  --accent: #00d400;   /* Verde Matrix/Terminal */
+  --nav-bg: #161b22;   /* Sfondo Navbar */
+  --border: rgba(255, 255, 255, 0.08);
 }
 
-/* === HEADER === */
+/* === RESET & BASE === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "JetBrains Mono", monospace; /* Font principale */
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden; /* Evita scroll orizzontale indesiderato */
+  overflow-y: auto;   /* Scroll verticale normale */
+}
+
+/* === NAVIGATION BAR (Safari Style) === */
 .top-nav {
   position: fixed;
   top: 0;
@@ -19,61 +29,87 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1e1e1e;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 1rem;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px); /* Effetto vetro se supportato */
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
-.top-nav a {
-  color: #e6edf3;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  background: #2b2b2b;
+/* Container dei bottoni */
+.top-nav nav {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3px;
   border-radius: 8px;
+}
+
+/* Stile bottoni menu */
+.top-nav nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Effetto Hover */
+.top-nav nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+/* Stato Attivo (Pagina corrente) */
+.top-nav nav a.active {
+  background: rgba(0, 212, 0, 0.15);
+  color: var(--accent);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Icona ">" nella home */
+.top-nav nav a i {
+  font-style: normal;
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+/* === SOCIAL ICONS === */
+.social-icons {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.social-icons img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+  filter: grayscale(100%);
   transition: all 0.2s ease;
 }
 
-.top-nav a:hover {
-  color: #00d400;
-  background: rgba(255, 255, 255, 0.12);
+.social-icons a:hover img {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.1);
 }
 
-
-
-/* === MAIN === */
+/* === MAIN LAYOUT WRAPPER === */
 main.content {
-  position: fixed;
-  top: 3.5rem;    /* sotto header */
-  bottom: 2.5rem; /* sopra footer */
-  left: 0;
-  right: 0;
-  overflow-y: auto;    /* scroll solo se necessario */
-  overflow-x: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
+  /* Assicura che il contenuto non finisca sotto header/footer */
+  padding-top: 4rem;    
+  padding-bottom: 3rem;
+  min-height: 100vh;
   box-sizing: border-box;
-  scrollbar-gutter: stable;
-}
-
-/* Elimina margini verticali interni che creano overflow */
-main.content > * {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* === CANVAS DNA BACKGROUND === */
-#dnaCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;  /* non interferisce con lo scroll o click */
+  position: relative;
+  z-index: 1; /* Sopra ai canvas di sfondo */
 }
 
 /* === FOOTER === */
@@ -86,37 +122,47 @@ main.content > * {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  background: var(--nav-bg);
+  border-top: 1px solid var(--border);
   font-size: 0.8rem;
   color: #8b949e;
-  background: rgba(13, 17, 23, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 1500;
 }
 
-/* === STABILITÀ GLOBALE: evita override da CSS di pagina === */
-.top-nav,
-.site-footer {
-  position: fixed !important;
-  background: #1e1e1e !important;
-  left: 0; right: 0;
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
 }
 
-/* === Social icons === */
-.social-icons {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
-.social-icons img {
-  width: 22px;
-  height: 22px;
-  opacity: 0.85;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
+/* === RESPONSIVE GLOBAL (Mobile Navbar) === */
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 0.8rem 0.5rem;
+    gap: 0.8rem;
+  }
 
-.social-icons img:hover {
-  transform: scale(1.1);
-  opacity: 1;
+  .top-nav nav {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  
+  .social-icons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Spazio extra per il menu doppio su mobile */
+  main.content {
+    padding-top: 140px; 
+  }
 }
