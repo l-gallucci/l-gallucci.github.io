@@ -151,8 +151,32 @@
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* Mobile */
+/* === MOBILE SPECIFIC === */
 @media (max-width: 600px) {
-  .terminal-tabs { display: none; } 
-  .terminal-container { width: 95%; } 
+  /* 1. Riattiva i tab, ma rendili più piccoli e su più righe */
+  .terminal-tabs {
+    display: flex;         /* Riattiva la visualizzazione */
+    flex-wrap: wrap;       /* Permetti di andare a capo */
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;    /* Testo più piccolo */
+    padding-bottom: 0.5rem;
+  }
+  
+  .tab {
+    padding: 2px 5px;      /* Hit area leggermente più grande */
+  }
+
+  /* 2. Adatta il contenitore */
+  .terminal-container { 
+    width: 95%; 
+    min-height: 200px; /* Un po' meno alto su mobile */
+  } 
+
+  /* 3. Aggiusta header */
+  .terminal-header {
+    flex-direction: column; /* Pallini sopra, tab sotto */
+    gap: 0.8rem;
+    align-items: center;
+  }
 }

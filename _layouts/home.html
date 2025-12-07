@@ -6,7 +6,12 @@ layout: base
 
 <div class="terminal-page">
   <div class="profile-section">
-    <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Luigi Gallucci" class="profile-photo">
+    <img src="{{ '/assets/img/profile.jpg' | relative_url }}" 
+     alt="Luigi Gallucci" 
+     class="profile-photo" 
+     width="120" height="120" 
+     loading="eager" 
+     fetchpriority="high">
     <h1 class="profile-name">Luigi Gallucci</h1>
   </div>
 

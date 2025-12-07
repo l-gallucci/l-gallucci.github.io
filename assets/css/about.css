@@ -1,19 +1,29 @@
+/* === Canvas vent: sfondo dietro tutto (livello 0) === */
 #ventCanvas {
-  position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; 
+  background: transparent;
+  pointer-events: none;
 }
 
+/* === Wrapper pagina === */
 .about-page {
   position: relative;
   z-index: 10;
-  min-height: 80vh;
+  min-height: 80vh; /* Usa 80vh per evitare problemi con la barra indirizzi mobile */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
+/* === Box centrale === */
 .about-content {
-  background: linear-gradient(to bottom right, rgba(15, 20, 22, 0.85), rgba(10, 15, 18, 0.75));
+  background: linear-gradient(to bottom right, rgba(15, 20, 22, 0.9), rgba(10, 15, 18, 0.8));
   backdrop-filter: blur(10px);
   border-radius: 18px;
   
@@ -28,9 +38,39 @@
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
-.about-content h1 { color: #00d400; margin: 0 0 1.4rem; font-size: clamp(1.5rem, 4vw, 2rem); }
-.about-content p { line-height: 1.6; margin: 0 0 1rem; font-size: 1rem; }
+.about-content h1 {
+  color: #00d400;
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
 
+.about-content p {
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+
+/* === MOBILE FIX (Risolve testo grande e posizione) === */
 @media (max-width: 600px) {
-  .about-content { padding: 2rem 1.2rem; }
+  .about-page {
+    /* Spinge il contenuto leggermente verso l'alto per lasciare spazio al vulcano sotto */
+    align-items: flex-start; 
+    padding-top: 20vh; /* Spazio dall'alto */
+  }
+
+  .about-content { 
+    padding: 1.5rem 1rem; /* Padding molto ridotto */
+    width: 90%;           /* Lascia margine laterale */
+    background: rgba(15, 20, 22, 0.95); /* Più scuro per leggibilità */
+  }
+
+  .about-content h1 {
+    font-size: 1.4rem; /* Titolo molto più piccolo */
+    margin-bottom: 0.8rem;
+  }
+
+  .about-content p {
+    font-size: 0.9rem; /* Testo più piccolo e compatto */
+    line-height: 1.45;
+  }
 }
