@@ -1,62 +1,109 @@
+/* === EXPEDITIONS PAGE === */
 #expeditions-container {
   text-align: center;
-  height: 100%;
+  /* Altezza minima: Schermo intero meno l'altezza di header */
+  min-height: calc(100vh - 100px); 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 #expeditions-container h1 {
   color: #00d400;
   margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 .subtitle {
   color: #8b949e;
   margin-bottom: 1.5rem;
+  padding: 0 1rem;
 }
 
+/* === MAPPA === */
 #map {
-  width: 90%;
-  height: 70vh;
+  /* FLUIDITÀ */
+  width: 100%;
+  max-width: 1000px;
+  height: 70vh;        /* Altezza proporzionale alla finestra */
+  min-height: 400px;   /* Altezza minima di sicurezza */
+  
   margin: 0 auto;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  
   z-index: 1;
+  position: relative;
+  background: #0d1117; /* Colore di fondo mentre carica */
+  overflow: hidden;
 }
 
-/* Legenda Mappa */
+/* === FIX CRITICO PER MAPPE (LEAFLET/GOOGLE) === */
+/* Ripristina il box-sizing standard solo dentro la mappa */
+#map, #map * {
+  box-sizing: content-box !important;
+}
+
+/* Evita che le regole globali sulle immagini rompano i tiles */
+#map img {
+  max-width: none !important;
+  max-height: none !important;
+  box-shadow: none !important;
+}
+
+/* === LEGENDA === */
 .legend-vertical {
   position: absolute;
   top: 50%;
-  right: 6%; /* Distanza relativa */
+  right: 6%; 
   transform: translateY(-50%);
+  
   background: rgba(22, 27, 34, 0.9);
-  padding: 10px;
+  padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
   color: #fff;
   font-size: 0.9rem;
   z-index: 500;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  text-align: left;
+  box-sizing: border-box; /* La legenda invece vuole il border-box */
 }
 
 .legend-vertical div {
-  display: flex; align-items: center; gap: 8px; margin: 5px 0;
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  margin: 6px 0;
 }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
 .past { background: #d41500; }
 .future { background: #58a6ff; }
 
-/* === MOBILE EXPEDITIONS === */
-@media (max-width: 768px) {
-  #map { width: 100%; height: 60vh; border-radius: 0; }
-  
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
   .legend-vertical {
     top: auto;
-    bottom: 80px; /* Sopra il footer */
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
     transform: none;
-    font-size: 0.75rem;
+    background: rgba(22, 27, 34, 0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 60vh;
+    border-radius: 8px; 
+  }
+  
+  .legend-vertical {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    bottom: 10px;
+    right: 10px;
   }
 }
