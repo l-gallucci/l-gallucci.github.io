@@ -2,5 +2,10 @@
 layout: expeditions
 title: "Expeditions"
 permalink: /expeditions/
-stylesheet: /assets/css/expeditions.css
+leaflet: true
+plume_mode: calm
+plume_intensity: 0.42
+scrim: calm
+main_class: page-body
+screen_label: Expeditions
 ---

@@ -1,16 +1,31 @@
 ---
 layout: base
 ---
+<div class="wrap">
+  <div class="kicker reveal"><span class="rule"></span>Expeditions</div>
+  <h1 class="display reveal" style="margin-bottom:30px">Expeditions</h1>
+  <p class="lede reveal">
+    Exploring the hidden microbial world of <span class="hl">deep-sea hydrothermal systems</span> —
+    from research vessels to the seafloor, kilometres below the surface.
+  </p>
 
-<div id="expeditions-container">
-  <h1>Expeditions</h1>
-  <p class="subtitle">Exploring the hidden microbial world of deep-sea hydrothermal systems</p>
-  <div id="map"></div>
+  <section class="map-wrap reveal" style="margin-top:54px">
+    <h2 class="section-title">Sites</h2>
+    <div class="geo-map"><div id="map"></div></div>
+    <div class="map-legend" style="margin-top:14px">
+      <span class="lg"><span class="swatch"></span>Completed</span>
+      <span class="lg"><span class="swatch hollow"></span>Upcoming</span>
+    </div>
+    <div class="map-cap">Hydrothermal vent fields across three ocean basins — click a marker for details.</div>
+  </section>
+
+  <section class="exp-group" style="margin-top:60px">
+    <h2 class="section-title reveal">Past</h2>
+    <div class="exp-list" id="exp-past"></div>
+  </section>
+
+  <section class="exp-group">
+    <h2 class="section-title reveal">Upcoming</h2>
+    <div class="exp-list" id="exp-upcoming"></div>
+  </section>
 </div>
-
-<div class="legend-vertical">
-  <div><span class="dot past"></span> Past</div>
-  <div><span class="dot future"></span> Upcoming</div>
-</div>
-
-<script src="{{ '/assets/js/expeditions.js' | relative_url }}"></script>

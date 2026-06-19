@@ -1,0 +1,24 @@
+---
+layout: base
+---
+<div class="wrap">
+  <div class="kicker reveal"><span class="rule"></span>Blog</div>
+  <h1 class="display reveal" style="margin-bottom:30px">Blog</h1>
+  <p class="lede reveal" style="margin-bottom:50px">
+    Occasional notes on <span class="hl">microbial ecology</span>, the
+    <span class="hl">code</span> I write along the way, and the odd <span class="hl">cooking</span> experiment.
+  </p>
+
+  <div class="post-list">
+    {% for post in site.posts %}
+    <a class="post reveal" href="{{ post.url | relative_url }}">
+      <div class="date">{{ post.date | date: "%Y · %b" | upcase }}</div>
+      <div>
+        <h3>{{ post.title }}</h3>
+        {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncatewords: 28 }}</p>{% endif %}
+        {% if post.tags %}<div class="tags">{% for t in post.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>{% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
