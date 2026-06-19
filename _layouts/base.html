@@ -9,23 +9,34 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
     {% assign custom_css = page.stylesheet | default: layout.stylesheet %}
-    {% if custom_css %}
-      <link rel="stylesheet" href="{{ custom_css | relative_url }}">
-    {% endif %}
+    {% if custom_css %}<link rel="stylesheet" href="{{ custom_css | relative_url }}">{% endif %}
+    {% if page.leaflet %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endif %}
   </head>
 
   <body>
-    {% include header.html %}
-    
-    <main class="content">
-      {{ content }}
-    </main>
-    
-    {% include footer.html %}
+    <div class="bg"></div>
+    <div class="grid"></div>
+    <canvas id="sim"></canvas>
+    <div class="vent"></div>
+    <div class="scrim {{ page.scrim | default: 'calm' }}"></div>
+
+    <div class="shell">
+      {% include header.html %}
+
+      <main class="{{ page.main_class | default: 'page-body' }}"{% if page.screen_label %} data-screen-label="{{ page.screen_label }}"{% endif %}>
+        {{ content }}
+      </main>
+
+      {% include footer.html %}
+    </div>
+
+    <script>window.PLUME_CONFIG={mode:'{{ page.plume_mode | default: "calm" }}', intensity:{{ page.plume_intensity | default: 0.42 }}, ventXFrac:0.82};</script>
+    <script src="{{ '/assets/js/plume2.js' | relative_url }}"></script>
+    {% if page.leaflet %}<script src="{{ '/assets/js/expeditions.js' | relative_url }}"></script>{% endif %}
   </body>
 </html>

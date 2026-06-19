@@ -1,71 +1,80 @@
-// === Expeditions Map ===
-document.addEventListener("DOMContentLoaded", () => {
-  const leafletCss = document.createElement("link");
-  leafletCss.rel = "stylesheet";
-  leafletCss.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-  document.head.appendChild(leafletCss);
+// === Expeditions — dark world map + data-driven cards ===
+// Reads /assets/data/expeditions.json (id, name, year, region, ship,
+// description, coords [lat,lon], logo, status). Renders Leaflet markers
+// (cyan; "future" = hollow ring) with logo popups, and fills the
+// Past / Upcoming lists from the same data. No connecting routes.
+(function(){
+  function esc(s){ return (s==null?'':String(s)).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 
-  const leafletJs = document.createElement("script");
-  leafletJs.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-  leafletJs.onload = initMap;
-  document.body.appendChild(leafletJs);
+  document.addEventListener('DOMContentLoaded', function(){
+    if(!document.getElementById('map')) return;
+    if(typeof L === 'undefined'){
+      var css=document.createElement('link'); css.rel='stylesheet';
+      css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
+      var js=document.createElement('script'); js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      js.onload=boot; document.body.appendChild(js);
+    } else { boot(); }
+  });
 
-  async function initMap() {
-    const map = L.map("map", {
-      center: [0, 20],
-      zoom: 2,
-      minZoom: 1,
-      maxZoom: 6,
-      worldCopyJump: true,
-    });
+  function boot(){
+    fetch('/assets/data/expeditions.json')
+      .then(function(r){ return r.json(); })
+      .then(function(exps){ renderMap(exps); renderLists(exps); })
+      .catch(function(e){ console.error('expeditions.json load failed', e); });
+  }
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+  function renderMap(exps){
+    var map = L.map('map', { worldCopyJump:true, scrollWheelZoom:false, minZoom:1, maxZoom:8 }).setView([30,5], 1);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      subdomains:'abcd', maxZoom:8,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(map);
 
-    // Load expeditions from JSON
-    const response = await fetch("/assets/data/expeditions.json");
-    const expeditions = await response.json();
-
-    expeditions.forEach((exp) => {
-      let color;
-      switch (exp.status) {
-        case "future":
-          color = "#58a6ff"; // blu chiaro
-          break;
-        default:
-          color = "#d41500"; // verde per passate
-      }
-
-      const marker = L.circleMarker(exp.coords, {
-        radius: 7,
-        color: color,
-        fillColor: color,
-        fillOpacity: 0.85,
-        weight: 1,
-      }).addTo(map);
-
-      const popupHtml = `
-        <div style="text-align:center;">
-          <img src="${exp.logo}" alt="${exp.name}" class="popup-logo" />
-          <strong>${exp.name}</strong><br>
-          <span style="font-size:0.85rem; color:#aaa;">${exp.year} · ${exp.ship}</span><br>
-          <em style="font-size:0.8rem;">${exp.region}</em><br>
-          <p style="font-size:0.8rem; color:#ccc; margin-top:6px;">${exp.description}</p>
-          <span style="font-size:0.75rem; display:block; margin-top:5px; color:${color}; font-weight:600;">
-            ${exp.status === "future" ? "Upcoming Expedition" :
-              exp.status === "ongoing" ? "Ongoing Mission" :
-              "Completed Expedition"}
-          </span>
-      `;
-
-      marker.bindPopup(popupHtml, {
-        closeButton: true,
-        autoClose: true,
-        closeOnClick: true,
-        className: "expedition-popup",
-      });
+    var pts=[];
+    exps.forEach(function(e){
+      if(!e.coords) return;
+      var future = e.status==='future';
+      L.circleMarker(e.coords, {
+        radius:7, color:'#36b6a6', weight:future?1.6:1,
+        fillColor:'#36b6a6', fillOpacity:future?0:0.9
+      }).addTo(map).bindPopup(
+        '<div class="exp-pop"><img src="'+e.logo+'" alt="">'+
+        '<div class="nm">'+esc(e.name)+'</div>'+
+        '<div class="mt">'+esc(e.year)+' · '+esc(e.ship)+'</div>'+
+        '<div class="rg">'+esc(e.region)+'</div>'+
+        (e.description ? '<div class="ds">'+esc(e.description)+'</div>' : '')+
+        '<div class="st">'+(future?'Upcoming expedition':'Completed expedition')+'</div></div>',
+        { closeButton:true, autoClose:true, className:'expedition-popup' }
+      );
+      pts.push(e.coords);
     });
+    if(pts.length){
+      map.fitBounds(pts, { padding:[44,44], maxZoom:3 });
+      setTimeout(function(){ map.invalidateSize(); map.fitBounds(pts, { padding:[44,44], maxZoom:3 }); }, 350);
+    }
   }
-});
+
+  function renderLists(exps){
+    var past = exps.filter(function(e){ return e.status!=='future'; })
+                   .sort(function(a,b){ return (b.year||0)-(a.year||0); });
+    var future = exps.filter(function(e){ return e.status==='future'; })
+                     .sort(function(a,b){ return (a.year||0)-(b.year||0); });
+    fill('exp-past', past);
+    fill('exp-upcoming', future);
+  }
+
+  function fill(id, list){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(!list.length){ el.innerHTML = '<div class="empty-state"><b>Nothing here yet.</b></div>'; return; }
+    el.innerHTML = list.map(function(e){
+      return '<div class="exp"><div class="when">'+esc(e.year)+'</div>'+
+        '<div class="exp-main"><div class="exp-head">'+
+        '<img class="exp-logo" src="'+e.logo+'" alt="">'+
+        '<div><h3>'+esc(e.name)+'</h3>'+
+        '<div class="where">'+esc(e.region)+' · '+esc(e.ship)+'</div></div></div>'+
+        (e.description ? '<p>'+esc(e.description)+'</p>' : '')+
+        '</div></div>';
+    }).join('');
+  }
+})();

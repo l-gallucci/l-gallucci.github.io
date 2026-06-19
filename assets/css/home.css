@@ -1,182 +1,140 @@
-/* === HOME PAGE TERMINAL BOX === */
-
-.terminal-page {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  /* FIX ALTEZZA: Sottrae l'altezza della navbar (4rem = circa 64px) + footer */
-  min-height: calc(100vh - 140px); 
-  
-  text-align: center;
-  padding: 1rem;
-  box-sizing: border-box;
+:root{
+  --bg:#060d10; --bg-deep:#04080a; --bg-floor:#03070a;
+  --text:#e9f1f0; --muted:#86979a; --faint:#4c5c5e;
+  --accent:#36b6a6; --accent-soft:#6fd2c6;
+  --accent-dim:rgba(54,182,166,.42); --accent-wash:rgba(54,182,166,.07); --accent-glow:rgba(54,182,166,.8);
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --glow:rgba(54,182,166,.12);
+  --vent-core:rgba(150,240,225,.40); --vent-mid:rgba(54,182,166,.20);
+  --avatar-ring:rgba(54,182,166,.25);
+  --name-accent:var(--text);
 }
 
-/* Canvas DNA: FORZATO DIETRO */
-#dnaCanvas {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100vw; 
-  height: 100vh;
-  z-index: 0 !important; /* Forza lo sfondo dietro */
-  pointer-events: none;
+/* ===========================================================
+   home-refined.css — sober / editorial home hero
+   Palette is supplied per-page via CSS custom properties on :root
+   (set in each variant's inline <style>). Structure is palette-agnostic.
+   =========================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{min-height:100%}
+body{
+  font-family:"Space Grotesk",system-ui,sans-serif;
+  background:var(--bg-deep); color:var(--text);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden; position:relative;
 }
+a{color:inherit; text-decoration:none}
+::selection{background:var(--accent-dim); color:#fff}
 
-/* Profile photo + name */
-.profile-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  z-index: 11; /* Sopra al resto */
+/* ---- fixed atmospheric background ---- */
+.bg{position:fixed; inset:0; z-index:0;
+  background:
+    radial-gradient(58% 52% at 78% 100%, var(--glow), transparent 62%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 64%, var(--bg-floor) 100%);}
+.grid{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.45;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(82% 82% at 70% 70%, #000 22%, transparent 84%);
+          mask-image:radial-gradient(82% 82% at 70% 70%, #000 22%, transparent 84%);}
+canvas#sim{position:fixed; inset:0; z-index:1; pointer-events:none}
+.vent{position:fixed; left:78%; bottom:-4%; transform:translateX(-50%); z-index:1; pointer-events:none;
+  width:240px; height:240px;
+  background:radial-gradient(circle, var(--vent-core), var(--vent-mid) 40%, transparent 72%);
+  filter:blur(8px); animation:flare 6.5s ease-in-out infinite;}
+@keyframes flare{0%,100%{opacity:.55; transform:translateX(-50%) scale(1)}50%{opacity:.85; transform:translateX(-50%) scale(1.12)}}
+/* text-legibility scrim, heavier on the left where the copy sits */
+.scrim{position:fixed; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(96deg, var(--bg-deep) 0%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.10) 56%, transparent 70%);}
+
+/* ---- shell / nav ---- */
+.shell{position:relative; z-index:3}
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap;
+  padding:26px clamp(20px,5vw,60px);
+  transition:padding .35s cubic-bezier(.2,.7,.2,1), background .35s, border-color .35s, backdrop-filter .35s;
+  border-bottom:1px solid transparent;
 }
-
-.profile-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 0.8rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  background: #1e1e1e; /* Evita trasparenze strane */
+.nav.scrolled{
+  padding:14px clamp(20px,5vw,60px);
+  background:color-mix(in srgb, var(--bg-deep) 78%, transparent);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
 }
+.brand{width:38px; height:38px; border-radius:50%; border:1px solid var(--line-2); display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  background:radial-gradient(circle at 50% 72%, var(--accent-wash), transparent 70%); transition:border-color .3s, background .3s, transform .3s}
+.brand:hover{border-color:var(--accent-dim); transform:translateY(-1px)}
+.brand .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px 2px var(--accent-glow); animation:pulseDot 3.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:.5; transform:scale(.82)}50%{opacity:1; transform:scale(1.12)}}
+.navlinks{display:flex; gap:clamp(14px,2.4vw,34px); align-items:center; flex-wrap:wrap}
+.navlinks a{color:var(--muted); font-size:14px; letter-spacing:.01em; position:relative; padding:4px 0; transition:color .3s}
+.navlinks a:hover{color:var(--text)}
+.navlinks a.active{color:var(--text)}
+.navlinks a.active::after{content:""; position:absolute; left:0; right:0; bottom:-3px; height:1.5px; background:var(--accent); box-shadow:0 0 8px var(--accent-glow)}
 
-.profile-name {
-  font-size: 1.8rem;
-  color: #e6edf3;
-  font-weight: 700;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Leggibilità sopra l'animazione */
+/* ---- hero ---- */
+.page{min-height:100vh; display:flex; flex-direction:column}
+.hero{flex:1; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  width:100%; max-width:1080px; margin:0 auto; padding:120px clamp(20px,5vw,60px) 90px}
+
+.avatar{width:80px; height:80px; border-radius:50%; object-fit:cover; display:block;
+  border:1px solid var(--line-2); padding:3px; background:var(--bg);
+  box-shadow:0 0 0 1px var(--avatar-ring) inset, 0 14px 34px -14px rgba(0,0,0,.9), 0 0 30px -6px var(--accent-wash);
+  margin-bottom:26px;}
+
+.kicker{font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:14px}
+.kicker .rule{height:1px; width:42px; background:linear-gradient(90deg, var(--accent), transparent)}
+
+.name{font-size:clamp(46px,8vw,96px); font-weight:500; line-height:.94; letter-spacing:-.035em; margin-bottom:22px}
+.name .sur{color:var(--name-accent)}
+
+.tagline{font-size:clamp(16px,1.8vw,19.5px); line-height:1.6; color:var(--muted); font-weight:300; max-width:46ch; margin-bottom:30px}
+
+.roles{display:flex; gap:8px 16px; flex-wrap:wrap; align-items:center; margin-bottom:46px}
+.role{font-family:"JetBrains Mono",monospace; font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+  white-space:nowrap; position:relative; padding-bottom:4px; transition:color .3s}
+.role.link::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--accent); transition:width .35s cubic-bezier(.2,.7,.2,1)}
+.role.link:hover{color:var(--text)}
+.role.link:hover::after{width:100%}
+.dotsep{color:var(--faint)}
+
+.enter{display:inline-flex; align-items:center; gap:12px; align-self:flex-start; white-space:nowrap;
+  font-family:"JetBrains Mono",monospace; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--faint); transition:color .3s}
+.enter:hover{color:var(--accent)}
+.enter .ln{width:34px; height:1px; background:currentColor; display:inline-block; animation:cue 2.6s ease-in-out infinite; transform-origin:left}
+.enter:hover .arr{transform:translateX(4px)}
+.enter .arr{transition:transform .3s}
+@keyframes cue{0%,100%{transform:scaleX(.5); opacity:.5}50%{transform:scaleX(1); opacity:1}}
+
+/* ---- footer ---- */
+footer.site{position:relative; z-index:3; padding:24px clamp(20px,5vw,60px) 30px; border-top:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap}
+.social{display:flex; gap:6px; flex-wrap:wrap}
+.social a{color:var(--muted); font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  padding:6px 12px; border:1px solid var(--line); border-radius:999px; transition:.28s}
+.social a:hover{color:var(--accent); border-color:var(--accent-dim); background:var(--accent-wash)}
+.copy{font-size:12.5px; color:var(--faint)}
+.copy a{color:var(--muted)}
+.copy a:hover{color:var(--accent)}
+
+/* ---- reveal ----
+   Base state is VISIBLE. Hiding + entrance only happen when JS has confirmed
+   the document is visible & motion is allowed (it adds .anim to <html>).
+   This keeps content visible in paused-timeline contexts (hidden tabs,
+   capture harnesses, no-JS, reduced-motion). */
+.reveal{opacity:1; transform:none}
+html.js.anim .reveal{opacity:0; transform:translateY(20px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
+html.js.anim .reveal.in{opacity:1; transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .brand .dot,.vent,.enter .ln{animation:none}
+  html{scroll-behavior:auto}
 }
-
-/* === TERMINAL CONTAINER === */
-.terminal-container {
-  position: relative;
-  background: rgba(20, 20, 20, 0.9); /* Più opaco per staccare dallo sfondo */
-  border-radius: 10px;
-  
-  /* RESPONSIVE FIX */
-  width: 100%;           
-  max-width: 900px;      
-  height: auto;          
-  min-height: 220px;     
-  
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-  overflow: hidden;      
-  margin: 0 auto;
-  z-index: 12;
-  
-  animation: fadeInStable 0.8s ease-out;
-}
-
-@keyframes fadeInStable {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Header del terminale */
-.terminal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background: rgba(30, 30, 30, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  flex-wrap: wrap; 
-  gap: 10px;
-}
-
-.terminal-dots {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.terminal-dots .dot { width: 9px; height: 9px; border-radius: 50%; }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
-
-/* Tabs */
-.terminal-tabs {
-  display: flex;
-  gap: 1.2rem;
-  font-size: 0.9rem;
-  color: #8b949e;
-  white-space: nowrap;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.tab { transition: color 0.2s; }
-.tab.active { color: #00d400; font-weight: 600; text-decoration: underline; cursor: default; }
-.tab:hover { color: #00d400; cursor: pointer; }
-
-/* === TERMINAL BODY === */
-.terminal-body {
-  flex: 1;
-  padding: 1.5rem;
-  text-align: left;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 400px; 
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.2) transparent;
-}
-
-.terminal-body::-webkit-scrollbar { width: 6px; }
-.terminal-body::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.2); border-radius: 3px; }
-.terminal-body::-webkit-scrollbar-track { background: transparent; }
-
-.typing {
-  font-family: "JetBrains Mono", monospace;
-  color: #e6edf3;
-  font-size: 0.95rem;
-  white-space: pre-wrap;
-  word-break: break-word;
-  line-height: 1.6;
-}
-
-.typing::after {
-  content: '▋';
-  color: #00d400;
-  animation: blink 1s infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-/* === MOBILE SPECIFIC === */
-@media (max-width: 600px) {
-  /* 1. Riattiva i tab, ma rendili più piccoli e su più righe */
-  .terminal-tabs {
-    display: flex;         /* Riattiva la visualizzazione */
-    flex-wrap: wrap;       /* Permetti di andare a capo */
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;    /* Testo più piccolo */
-    padding-bottom: 0.5rem;
-  }
-  
-  .tab {
-    padding: 2px 5px;      /* Hit area leggermente più grande */
-  }
-
-  /* 2. Adatta il contenitore */
-  .terminal-container { 
-    width: 95%; 
-    min-height: 200px; /* Un po' meno alto su mobile */
-  } 
-
-  /* 3. Aggiusta header */
-  .terminal-header {
-    flex-direction: column; /* Pallini sopra, tab sotto */
-    gap: 0.8rem;
-    align-items: center;
-  }
+@media (max-width:640px){
+  .scrim{background:linear-gradient(180deg, var(--bg-deep) 0%, rgba(0,0,0,.5) 40%, rgba(0,0,0,.78) 100%)}
+  .roles{gap:6px 12px}
 }
