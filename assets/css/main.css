@@ -115,6 +115,8 @@ h2.section-title::before{content:""; width:8px; height:8px; border-radius:50%; b
 .pub:hover{transform:translateY(-4px); border-color:var(--accent-dim); background:rgba(15,20,28,.7)}
 .pub .src{font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:.06em; color:var(--muted); display:flex; flex-direction:column; gap:6px}
 .pub .src .yr{color:var(--accent); font-size:13px}
+.pub .src .jname{display:flex; align-items:center; gap:6px}
+.pub .src .jicon{width:14px; height:14px; border-radius:2px; object-fit:contain; opacity:.75; flex-shrink:0}
 .pub h3{font-size:clamp(18px,1.9vw,22px); font-weight:500; line-height:1.32; letter-spacing:-.01em; color:var(--text); transition:color .3s}
 .pub:hover h3{color:var(--accent-soft)}
 .pub .authors{margin-top:12px; font-size:14px; color:var(--muted); font-weight:300; line-height:1.5}

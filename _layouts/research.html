@@ -21,7 +21,7 @@ layout: base
     <div class="pub-list">
       {% for p in site.data.papers %}
       <a class="pub reveal" href="{{ p.link }}" target="_blank" rel="noopener">
-        <div class="src"><span>{{ p.journal }}</span><span class="yr">{{ p.year }}</span></div>
+        <div class="src"><span class="jname">{% if p.icon %}<img class="jicon" src="{{ p.icon }}" alt="" width="14" height="14" loading="lazy">{% endif %}{{ p.journal }}</span><span class="yr">{{ p.year }}</span></div>
         <div>
           <h3>{{ p.title }}</h3>
           <div class="authors">{{ p.authors }}</div>
