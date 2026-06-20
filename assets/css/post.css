@@ -1,0 +1,72 @@
+/* ===========================================================
+   post.css — single article page (cyan deep-sea redesign)
+   Inherits design tokens from main.css (:root vars).
+   =========================================================== */
+.article{max-width:880px; margin:0 auto; padding:120px clamp(20px,5vw,40px) 90px}
+
+.post-back{display:inline-flex; align-items:center; gap:8px; margin-bottom:40px;
+  font-family:"JetBrains Mono",monospace; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); transition:color .3s}
+.post-back:hover{color:var(--accent)}
+.post-back .arr{transition:transform .3s}
+.post-back:hover .arr{transform:translateX(-3px)}
+
+/* hero */
+.post-hero{padding-bottom:36px; margin-bottom:44px; border-bottom:1px solid var(--line)}
+.post-meta{display:flex; align-items:center; gap:12px; margin-bottom:22px;
+  font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:.06em; color:var(--accent)}
+.post-meta .sep{color:var(--faint)}
+.post-title{font-size:clamp(32px,5.2vw,52px); font-weight:500; line-height:1.06; letter-spacing:-.025em; color:var(--text); margin-bottom:24px}
+.post-tags{display:flex; flex-wrap:wrap; gap:8px}
+.post-tags .tag{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); padding:5px 12px; border:1px solid var(--line); border-radius:999px; transition:.25s}
+.post-tags .tag:hover{color:var(--accent); border-color:var(--accent-dim); background:var(--accent-wash)}
+
+/* reading column */
+.post-content{font-size:18.5px; line-height:1.8; color:var(--text); font-weight:300}
+.post-content > *{margin-bottom:1.5em}
+.post-content > *:last-child{margin-bottom:0}
+.post-content h2{font-size:26px; font-weight:600; line-height:1.2; letter-spacing:-.01em; color:var(--text); margin-top:2.2em; margin-bottom:.7em}
+.post-content h3{font-size:20px; font-weight:600; color:var(--accent-soft); margin-top:1.9em; margin-bottom:.6em}
+.post-content a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-dim); transition:border-color .25s}
+.post-content a:hover{border-bottom-color:var(--accent)}
+.post-content strong{color:var(--text); font-weight:600}
+.post-content em{color:var(--accent-soft); font-style:italic}
+.post-content ul,.post-content ol{padding-left:1.4em}
+.post-content li{margin-bottom:.55em}
+.post-content li::marker{color:var(--accent)}
+.post-content blockquote{border-left:2px solid var(--accent); background:var(--accent-wash);
+  margin:2em 0; padding:1.1em 1.4em; border-radius:0 10px 10px 0; color:var(--muted); font-style:italic}
+.post-content blockquote p:last-child{margin-bottom:0}
+.post-content hr{border:0; height:1px; background:var(--line); margin:2.6em 0}
+.post-content img{max-width:100%; height:auto; border-radius:12px; border:1px solid var(--line); display:block}
+.post-content figure{margin:2em 0}
+.post-content figcaption{margin-top:.7em; font-size:13px; color:var(--faint); text-align:center}
+
+/* code */
+.post-content code{font-family:"JetBrains Mono",monospace; font-size:.86em; color:var(--accent-soft);
+  background:rgba(255,255,255,.05); padding:2px 7px; border-radius:5px}
+.post-content pre{background:rgba(4,8,10,.7); border:1px solid var(--line); border-radius:12px;
+  padding:18px 20px; overflow-x:auto; font-size:14px; line-height:1.6}
+.post-content pre code{background:transparent; padding:0; color:#cdd6e0; font-size:14px}
+
+/* prev / next — compact squares, not full columns */
+.post-nav{display:flex; flex-wrap:wrap; gap:14px; margin-top:60px; padding-top:34px; border-top:1px solid var(--line)}
+.pn{display:flex; flex-direction:column; gap:9px; width:220px; max-width:100%; padding:16px 18px;
+  border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.012); transition:.3s; min-width:0}
+.pn:hover{border-color:var(--accent-dim); background:var(--accent-wash); transform:translateY(-2px)}
+.pn.next{margin-left:auto; text-align:right; align-items:flex-end}
+.pn-label{font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint)}
+.pn:hover .pn-label{color:var(--accent)}
+.pn-title{font-size:13.5px; font-weight:500; color:var(--text); line-height:1.35;
+  overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical}
+.pn .arr{display:inline-block; transition:transform .3s}
+.pn.prev:hover .arr{transform:translateX(-3px)}
+.pn.next:hover .arr{transform:translateX(3px)}
+
+@media (max-width:640px){
+  .article{padding-top:100px}
+  .post-content{font-size:17px}
+  .pn{width:100%}
+  .pn.next{margin-left:0; text-align:left; align-items:flex-start}
+}

@@ -6,6 +6,7 @@
   --bg-deep:#04080a; --bg:#060d10; --panel:#0c1016; --panel-2:#0f141c;
   --text:#eaeef4; --muted:#8a94a6; --faint:#525c6e;
   --accent:#36b6a6; --accent-soft:#6fd2c6; --accent-dim:rgba(54,182,166,.5);
+  --accent-wash:rgba(54,182,166,.07); --accent-glow:rgba(54,182,166,.8);
   --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.13);
   --maxw:1080px;
   --ease:cubic-bezier(.2,.7,.2,1);
