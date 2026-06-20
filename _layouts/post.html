@@ -1,50 +1,45 @@
 ---
 layout: base
-stylesheet: /assets/css/blog.css
+plume_mode: subtle
+plume_intensity: 0.3
+scrim: calm
+main_class: page-body
+stylesheet: /assets/css/post.css
 ---
+<article class="article">
+  <a class="post-back reveal" href="{{ '/blog/' | relative_url }}"><span class="arr">←</span> Blog</a>
 
-<article class="post-layout">
-  
   <header class="post-hero">
-    <h1 class="post-hero-title">{{ page.title }}</h1>
-    
-    <div class="post-hero-meta">
-      <span title="Date">
-        📅 {{ page.date | date: "%d %b %Y" }}
-      </span>
-      <span title="Reading Time">
-        ⏱️ {{ content | number_of_words | divided_by: 180 | plus: 1 }} min read
-      </span>
+    <div class="post-meta reveal">
+      <span>{{ page.date | date: "%b %d, %Y" }}</span>
+      <span class="sep">·</span>
+      <span>{{ content | number_of_words | divided_by: 180 | plus: 1 }} min read</span>
     </div>
-
+    <h1 class="post-title reveal">{{ page.title }}</h1>
     {% if page.tags %}
-    <div class="post-tags">
-      {% for tag in page.tags %}
-        <span class="tag-pill">#{{ tag }}</span>
-      {% endfor %}
+    <div class="post-tags reveal">
+      {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
     </div>
     {% endif %}
   </header>
 
-  <div class="post-content">
+  <div class="post-content reveal">
     {{ content }}
   </div>
 
-  <div class="post-navigation">
+  <nav class="post-nav">
     {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" class="nav-link prev">
-        <span class="nav-label">← Previous Post</span>
-        <span class="nav-title">{{ page.previous.title | truncatewords: 5 }}</span>
+      <a href="{{ page.previous.url | relative_url }}" class="pn prev">
+        <span class="pn-label"><span class="arr">←</span> Previous</span>
+        <span class="pn-title">{{ page.previous.title }}</span>
       </a>
-    {% else %}
-      <div></div> {% endif %}
+    {% else %}<span></span>{% endif %}
 
     {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" class="nav-link next" style="text-align: right;">
-        <span class="nav-label">Next Post →</span>
-        <span class="nav-title">{{ page.next.title | truncatewords: 5 }}</span>
+      <a href="{{ page.next.url | relative_url }}" class="pn next">
+        <span class="pn-label">Next <span class="arr">→</span></span>
+        <span class="pn-title">{{ page.next.title }}</span>
       </a>
-    {% endif %}
-  </div>
-
+    {% else %}<span></span>{% endif %}
+  </nav>
 </article>

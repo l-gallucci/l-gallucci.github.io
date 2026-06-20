@@ -8,10 +8,12 @@ and check every page.
 - `_includes/header.html`, `_includes/footer.html`
 - `_layouts/base.html`, `home.html`, `about.html`, `research.html`, `expeditions.html`
 - `_layouts/blog.html`  ← NEW (blog index layout)
+- `_layouts/post.html`  ← restyled single-article page (cyan, new reading column)
 - `_pages/home.md`, `about.md`, `research.md`, `expeditions.md`, `blog.md`
   (front-matter only — page copy now lives in the layouts)
 - `assets/css/main.css`  ← shared design system (replaces old main.css)
 - `assets/css/home.css`  ← new home hero styles (replaces old home.css)
+- `assets/css/post.css`  ← NEW single-article styles (replaces old blog.css for posts)
 - `assets/js/plume2.js`  ← NEW background engine
 - `assets/js/expeditions.js`  ← replaces old (dark world map + logo popups + cards)
 - `assets/img/profile-600.png`  ← NEW 600×600 optimized avatar (the 6.7 MB
@@ -28,13 +30,11 @@ and check every page.
 
 ## Safe to DELETE (no longer referenced)
 - `assets/js/dna_bg.js`, `assets/js/typing.js`, `assets/js/ventCanvas.js`
-- `assets/css/about.css`, `research.css`, `expeditions.css`
-  (all merged into main.css)
+- `assets/css/about.css`, `research.css`, `expeditions.css`, `blog.css`
+  (all merged into main.css / post.css)
 
 ## Still on the old style (out of scope of this pass)
-- `_layouts/post.html` + `assets/css/blog.css` — the single-article page. It now
-  sits on the new dark base (nav/footer/background match), but the article
-  typography is still the old styling. Restyle next.
+- (nothing — the single-post page is now restyled too)
 
 ## How it works
 - `base.html` builds the page chrome (background canvas, nav, footer) and reads

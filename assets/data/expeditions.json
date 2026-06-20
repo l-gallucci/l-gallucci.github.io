@@ -3,7 +3,7 @@
     "id": "SO301",
     "name": "SO301 – Kairei Vent Field",
     "year": "2023",
-    "region": "Indian Ocean",
+    "region": "Central Indian Ridge · Indian Ocean",
     "ship": "R/V Sonne",
     "description": "Sampling hydrothermal plumes along the Central Indian Ridge near the Kairei Vent Field, integrating multidisciplinary approaches to study biogeochemical cycles.",
     "coords": [-25.33, 70.03],
@@ -23,11 +23,11 @@
   },
   {
     "id": "GREAT",
-    "name": "Greenland Spreading Zone: Exploring Extreme Habitats in Arctic seamounts and hydrothermal vents (GREAT)",
+    "name": "GREAT – Greenland Spreading Zone",
     "year": "2026",
-    "region": "Greenland Spreading Zone",
+    "region": "Greenland Spreading Zone · Arctic",
     "ship": "R/V Celtic Explorer",
-    "description": "",
+    "description": "Exploring extreme habitats in Arctic seamounts and hydrothermal vents along the Greenland Spreading Zone.",
     "coords": [70.891, -51.0],
     "logo": "/assets/icons/GREAT.png",
     "status": "future"
