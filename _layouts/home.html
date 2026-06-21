@@ -4,10 +4,10 @@ layout: base
 <section class="hero">
   <img class="avatar reveal" src="{{ '/assets/img/profile-600.png' | relative_url }}" alt="{{ site.author.name }}" width="80" height="80" loading="eager">
   <h1 class="name reveal">Luigi <span class="sur">Gallucci</span></h1>
-  <p class="tagline reveal">Microbial ecologist studying life at deep-sea hydrothermal vents — between oceanographic expeditions, a desk, and a terminal.</p>
+  <p class="tagline reveal">{{ site.data.home.tagline }}</p>
   <div class="roles reveal">
-    <a class="role link" href="{{ '/research/' | relative_url }}">Microbial Ecologist</a><span class="dotsep">·</span>
-    <a class="role link" href="{{ '/blog/' | relative_url }}">Coding for fun</a><span class="dotsep">·</span>
-    <span class="role">Cooking for passion</span>
+    <a class="role link" href="{{ '/research/' | relative_url }}">{{ site.data.home.role_science }}</a><span class="dotsep">·</span>
+    <a class="role link" href="{{ '/blog/' | relative_url }}">{{ site.data.home.role_code }}</a><span class="dotsep">·</span>
+    <span class="role">{{ site.data.home.role_personal }}</span>
   </div>
 </section>

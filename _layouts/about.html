@@ -3,18 +3,10 @@ layout: base
 ---
 <div class="wrap hero">
   <div class="about-col" style="max-width:600px">
-    <div class="meta reveal"><span class="live"><i></i>Hydrothermal plume</span><span>Fe · S · trace metals</span></div>
-    <div class="kicker reveal"><span class="rule"></span>Microbial Ecologist</div>
+    <div class="meta reveal"><span class="live"><i></i>{{ site.data.about.meta_label }}</span><span>{{ site.data.about.meta_detail }}</span></div>
+    <div class="kicker reveal"><span class="rule"></span>{{ site.data.about.kicker }}</div>
     <h1 class="display reveal" style="margin-bottom:34px">About <span class="me">Me</span></h1>
-    <p class="lede reveal">
-      I'm a <span class="hl-strong">microbial ecologist</span> fascinated by how life thrives in extreme
-      environments — particularly <span class="hl">deep-sea hydrothermal vents</span>. My research integrates
-      omics, chemistry, and modeling to understand how microbes influence the cycling of
-      <span class="hl">iron, sulfur, and trace elements</span> in hydrothermal plumes.
-    </p>
-    <p class="lede reveal">
-      Beyond research, I enjoy coding, designing games, and cooking — exploring creativity
-      across both science and art.
-    </p>
+    <p class="lede reveal">{{ site.data.about.bio_1 }}</p>
+    <p class="lede reveal">{{ site.data.about.bio_2 }}</p>
   </div>
 </div>

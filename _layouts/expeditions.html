@@ -4,19 +4,16 @@ layout: base
 <div class="wrap">
   <div class="kicker reveal"><span class="rule"></span>Expeditions</div>
   <h1 class="display reveal" style="margin-bottom:30px">Expeditions</h1>
-  <p class="lede reveal">
-    Exploring the hidden microbial world of <span class="hl">deep-sea hydrothermal systems</span> —
-    from research vessels to the seafloor, kilometres below the surface.
-  </p>
+  <p class="lede reveal">{{ site.data.expeditions.lede }}</p>
 
   <section class="map-wrap reveal" style="margin-top:54px">
-    <h2 class="section-title">Sites</h2>
+    <h2 class="section-title">Sampling sites</h2>
     <div class="geo-map"><div id="map"></div></div>
     <div class="map-legend" style="margin-top:14px">
       <span class="lg"><span class="swatch"></span>Completed</span>
       <span class="lg"><span class="swatch hollow"></span>Upcoming</span>
     </div>
-    <div class="map-cap">Hydrothermal vent fields across three ocean basins — click a marker for details.</div>
+    <div class="map-cap">{{ site.data.expeditions.map_caption }}</div>
   </section>
 
   <section class="exp-group" style="margin-top:60px">

@@ -1,43 +1,32 @@
-title: "Luigi Gallucci"
-description: "Microbial ecology, coding, and cooking tips"
-
-# === GitHub Pages configuration ===
-
-url: "https://l-gallucci.github.io"
-baseurl: ""
+title: Luigi Gallucci
+description: Microbial ecology, coding, and cooking tips
+url: https://l-gallucci.github.io
+baseurl: ''
 theme: null
 markdown: kramdown
 permalink: /:title/
-
-# === Author info ===
-
 author:
-  name: "Luigi Gallucci"
-  email: "lgallucc@mpi-bremen.de"
-  github: "l-gallucci"
-  orcid: "0000-0000-0000-0000"
-
+  name: Luigi Gallucci
+  email: lgallucc@mpi-bremen.de
+  github: l-gallucci
+  orcid: 0000-0000-0000-0000
 navbar:
-  - title: "About"
+  - title: About
     url: /about/
-  - title: "Research"
+  - title: Research
     url: /research/
-  - title: "Creative"
+  - title: Creative
     url: /creative/
-  - title: "Contact"
+  - title: Contact
     url: /contact/
-
-# === Include static assets ===
 include:
   - assets
   - _pages
-
-# === Plugins (safe for GitHub Pages) ===
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-
+  - jekyll-admin
 exclude:
   - Gemfile
   - Gemfile.lock
