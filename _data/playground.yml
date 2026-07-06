@@ -6,12 +6,12 @@ code:
     - id: "hydrogen-planet"
       title: "Hydrogen Planet"
       type: "Quiz game"
-      status: "Releasead"
+      status: "Released"
       stack: "JavaScript, CSS, HTML"
       description: "A quiz game about field-work research on our planet with a focus on hydrogen. The game is designed for educational (+10)purposes and aims to raise awareness about the importance of hydrogen in our environment."
       links:
         demo: "https://l-gallucci.github.io/hydrogen-planet/"
-        source: "https://github.com/l-gallucci/hydrogen-planet"
+        github: "https://github.com/l-gallucci/hydrogen-planet"
 
 photos:
   lede: "A quiet portfolio of personal photographs taken with a camera, from fieldwork edges to everyday light."

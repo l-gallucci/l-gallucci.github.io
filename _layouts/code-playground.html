@@ -23,6 +23,7 @@ layout: base
         {% if project.links %}
         <div class="project-links">
           <a href="{{ '/playground/code/' | append: '#' | append: project_id | relative_url }}">Permalink</a>
+          {% if project.links.github %}<a href="{{ project.links.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
           {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noopener">Demo</a>{% endif %}
           {% if project.links.source %}<a href="{{ project.links.source }}" target="_blank" rel="noopener">Source</a>{% endif %}
         </div>
