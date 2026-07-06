@@ -71,6 +71,11 @@ canvas#sim{position:fixed; inset:0; z-index:1; pointer-events:none}
 .navlinks a:hover{color:var(--text)}
 .navlinks a.active{color:var(--text)}
 .navlinks a.active::after{content:""; position:absolute; left:0; right:0; bottom:-3px; height:1.5px; background:var(--accent); box-shadow:0 0 8px rgba(54,182,166,.7)}
+.nav-toggle{display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; padding:0; border:1px solid var(--line-2); border-radius:8px; background:transparent; cursor:pointer; flex:0 0 auto}
+.nav-toggle span{display:block; width:16px; height:1.5px; margin:0 auto; background:var(--text); transition:transform .25s, opacity .25s}
+.nav-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
 /* ---- generic page layout ---- */
 .page{min-height:100vh; display:flex; flex-direction:column}
@@ -246,6 +251,15 @@ html.js.anim .reveal.in{opacity:1; transform:none}
   .path-card{min-height:220px}
   .inline-playground-card.photo{grid-template-columns:72px 1fr}
   .inline-playground-card.photo img{width:72px}
+  .nav-toggle{display:flex}
+  .navlinks{
+    display:none; position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:flex-start; gap:0;
+    background:rgba(6,9,15,.96); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line); padding:8px clamp(20px,5vw,56px) 18px;
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{width:100%; padding:12px 0}
 }
 
 

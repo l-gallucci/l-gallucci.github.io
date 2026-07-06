@@ -1,6 +1,9 @@
 <nav class="nav">
   <a class="brand" href="{{ '/' | relative_url }}" aria-label="Home" title="Home"><span class="dot"></span></a>
-  <div class="navlinks">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="navlinks">
     <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>Home</a>
     <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} class="active"{% endif %}>About</a>
     <a href="{{ '/research/' | relative_url }}"{% if page.url contains '/research' %} class="active"{% endif %}>Research</a>

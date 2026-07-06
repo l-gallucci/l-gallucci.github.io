@@ -20,6 +20,24 @@
   function onScroll(){ if(nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
+  /* ---------- shared: mobile nav toggle ---------- */
+  var navToggle = document.querySelector('.nav-toggle');
+  var navLinks = document.getElementById('navlinks');
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   /* ---------- shared: staggered entrance ----------
      Only hide + animate when the doc is actually visible and motion is
      allowed (adds .anim to <html>). Otherwise base (visible) styles stand,
