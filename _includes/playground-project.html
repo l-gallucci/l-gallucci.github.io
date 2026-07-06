@@ -1,0 +1,20 @@
+{% assign wanted_id = include.id %}
+{% assign found_project = nil %}
+{% for project in site.data.playground.code.projects %}
+  {% assign project_id = project.id | default: project.title | slugify %}
+  {% if project_id == wanted_id %}
+    {% assign found_project = project %}
+    {% assign found_project_id = project_id %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if found_project %}
+<a class="inline-playground-card" href="{{ '/playground/code/' | append: '#' | append: found_project_id | relative_url }}">
+  <span>{{ found_project.type | default: 'Code' }}</span>
+  <b>{{ found_project.title }}</b>
+  {% if found_project.description %}<em>{{ found_project.description }}</em>{% endif %}
+</a>
+{% else %}
+<span class="missing-playground-card">Missing code project: {{ include.id }}</span>
+{% endif %}

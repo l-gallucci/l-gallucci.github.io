@@ -1,0 +1,24 @@
+---
+layout: base
+---
+<div class="wrap">
+  <div class="kicker reveal"><span class="rule"></span>Playground</div>
+  <h1 class="display reveal" style="margin-bottom:30px">Playground</h1>
+  <p class="lede reveal" style="margin-bottom:54px">{{ site.data.playground.lede }}</p>
+
+  <div class="path-grid">
+    <a class="path-card reveal" href="{{ '/playground/code/' | relative_url }}">
+      <span class="path-meta">Code</span>
+      <h2>Code Playground</h2>
+      <p>{{ site.data.playground.code.lede }}</p>
+      <span class="go">Enter &rarr;</span>
+    </a>
+
+    <a class="path-card reveal" href="{{ '/playground/photos/' | relative_url }}">
+      <span class="path-meta">Camera</span>
+      <h2>Photo Portfolio</h2>
+      <p>{{ site.data.playground.photos.lede }}</p>
+      <span class="go">Enter &rarr;</span>
+    </a>
+  </div>
+</div>

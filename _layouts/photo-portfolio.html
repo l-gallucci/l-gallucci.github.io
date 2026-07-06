@@ -1,0 +1,27 @@
+---
+layout: base
+---
+<div class="wrap">
+  <div class="kicker reveal"><span class="rule"></span>Playground / Photos</div>
+  <h1 class="display reveal" style="margin-bottom:30px">Photo <span class="me">Portfolio</span></h1>
+  <p class="lede reveal" style="margin-bottom:54px">{{ site.data.playground.photos.lede }}</p>
+
+  {% assign photos = site.data.playground.photos.items %}
+  {% if photos and photos.size > 0 %}
+  <div class="photo-grid">
+    {% for photo in photos %}
+    {% assign photo_id = photo.id | default: photo.title | slugify %}
+    <figure class="photo-card reveal" id="{{ photo_id }}">
+      <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | default: photo.title }}" loading="lazy">
+      <figcaption>
+        <span>{{ photo.place }}{% if photo.place and photo.year %} / {% endif %}{{ photo.year }}</span>
+        <b>{{ photo.title }}</b>
+        <a href="{{ '/playground/photos/' | append: '#' | append: photo_id | relative_url }}">Permalink</a>
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state reveal"><b>No photographs selected yet.</b> Add camera shots to turn this into a personal photo portfolio.</div>
+  {% endif %}
+</div>

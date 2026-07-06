@@ -1,0 +1,26 @@
+lede: "A small home for the things I build and the pictures I keep coming back to."
+
+code:
+  lede: "Small games, utilities, experiments, and code sketches that do not quite belong in the research page."
+  projects: []
+  # Example:
+  # - id: "tiny-game"
+  #   title: "Tiny Game"
+  #   type: "Game"
+  #   status: "Prototype"
+  #   stack: "JavaScript, Canvas"
+  #   description: "A small browser game built to test a mechanic."
+  #   links:
+  #     demo: "https://example.com"
+  #     source: "https://github.com/l-gallucci/example"
+
+photos:
+  lede: "A quiet portfolio of personal photographs taken with a camera, from fieldwork edges to everyday light."
+  items: []
+  # Example:
+  # - id: "north-sea-light"
+  #   title: "North Sea Light"
+  #   place: "Bremerhaven"
+  #   year: "2026"
+  #   image: "/assets/img/photos/north-sea-light.jpg"
+  #   alt: "Soft light over the North Sea"

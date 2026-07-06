@@ -1,0 +1,37 @@
+---
+layout: base
+---
+<div class="wrap">
+  <div class="kicker reveal"><span class="rule"></span>Playground / Code</div>
+  <h1 class="display reveal" style="margin-bottom:30px">Code <span class="me">Playground</span></h1>
+  <p class="lede reveal" style="margin-bottom:54px">{{ site.data.playground.code.lede }}</p>
+
+  {% assign projects = site.data.playground.code.projects %}
+  {% if projects and projects.size > 0 %}
+  <div class="project-list">
+    {% for project in projects %}
+    {% assign project_id = project.id | default: project.title | slugify %}
+    <article class="project-card reveal" id="{{ project_id }}">
+      <div class="project-meta">
+        {% if project.type %}<span>{{ project.type }}</span>{% endif %}
+        {% if project.status %}<span>{{ project.status }}</span>{% endif %}
+      </div>
+      <div>
+        <h2>{{ project.title }}</h2>
+        {% if project.description %}<p>{{ project.description }}</p>{% endif %}
+        {% if project.stack %}<div class="tags"><span class="tag">{{ project.stack }}</span></div>{% endif %}
+        {% if project.links %}
+        <div class="project-links">
+          <a href="{{ '/playground/code/' | append: '#' | append: project_id | relative_url }}">Permalink</a>
+          {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noopener">Demo</a>{% endif %}
+          {% if project.links.source %}<a href="{{ project.links.source }}" target="_blank" rel="noopener">Source</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state reveal"><b>Nothing published here yet.</b> This page is ready for small games, tools, and code experiments.</div>
+  {% endif %}
+</div>

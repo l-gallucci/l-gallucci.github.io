@@ -1,0 +1,20 @@
+{% assign wanted_id = include.id %}
+{% assign found_photo = nil %}
+{% for photo in site.data.playground.photos.items %}
+  {% assign photo_id = photo.id | default: photo.title | slugify %}
+  {% if photo_id == wanted_id %}
+    {% assign found_photo = photo %}
+    {% assign found_photo_id = photo_id %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if found_photo %}
+<a class="inline-playground-card photo" href="{{ '/playground/photos/' | append: '#' | append: found_photo_id | relative_url }}">
+  {% if found_photo.image %}<img src="{{ found_photo.image | relative_url }}" alt="{{ found_photo.alt | default: found_photo.title }}" loading="lazy">{% endif %}
+  <span>{{ found_photo.place }}{% if found_photo.place and found_photo.year %} / {% endif %}{{ found_photo.year }}</span>
+  <b>{{ found_photo.title }}</b>
+</a>
+{% else %}
+<span class="missing-playground-card">Missing photo: {{ include.id }}</span>
+{% endif %}

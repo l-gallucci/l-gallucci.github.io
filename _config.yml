@@ -17,6 +17,8 @@ navbar:
     url: /research/
   - title: Expeditions
     url: /expeditions/
+  - title: Playground
+    url: /playground/
   - title: Blog
     url: /blog/
 include:
