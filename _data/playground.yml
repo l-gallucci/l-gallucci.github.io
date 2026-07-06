@@ -2,17 +2,16 @@ lede: "A small home for the things I build and the pictures I keep coming back t
 
 code:
   lede: "Small games, utilities, experiments, and code sketches that do not quite belong in the research page."
-  projects: []
-  # Example:
-  # - id: "tiny-game"
-  #   title: "Tiny Game"
-  #   type: "Game"
-  #   status: "Prototype"
-  #   stack: "JavaScript, Canvas"
-  #   description: "A small browser game built to test a mechanic."
-  #   links:
-  #     demo: "https://example.com"
-  #     source: "https://github.com/l-gallucci/example"
+  projects:
+    - id: "hydrogen-planet"
+      title: "Hydrogen Planet"
+      type: "Quiz game"
+      status: "Releasead"
+      stack: "JavaScript, CSS, HTML"
+      description: "A quiz game about field-work research on our planet with a focus on hydrogen. The game is designed for educational (+10)purposes and aims to raise awareness about the importance of hydrogen in our environment."
+      links:
+        demo: "https://l-gallucci.github.io/hydrogen-planet/"
+        source: "https://github.com/l-gallucci/hydrogen-planet"
 
 photos:
   lede: "A quiet portfolio of personal photographs taken with a camera, from fieldwork edges to everyday light."
