@@ -16,7 +16,6 @@ layout: base
       <figcaption>
         <span>{{ photo.place }}{% if photo.place and photo.year %} / {% endif %}{{ photo.year }}</span>
         <b>{{ photo.title }}</b>
-        <a href="{{ '/playground/photos/' | append: '#' | append: photo_id | relative_url }}">Permalink</a>
       </figcaption>
     </figure>
     {% endfor %}

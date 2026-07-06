@@ -17,14 +17,16 @@ layout: base
         {% if project.status %}<span>{{ project.status }}</span>{% endif %}
       </div>
       <div>
+        {% if project.links.demo %}
+        <h2><a href="{{ project.links.demo }}" target="_blank" rel="noopener">{{ project.title }}</a></h2>
+        {% else %}
         <h2>{{ project.title }}</h2>
+        {% endif %}
         {% if project.description %}<p>{{ project.description }}</p>{% endif %}
         {% if project.stack %}<div class="tags"><span class="tag">{{ project.stack }}</span></div>{% endif %}
         {% if project.links %}
         <div class="project-links">
-          <a href="{{ '/playground/code/' | append: '#' | append: project_id | relative_url }}">Permalink</a>
           {% if project.links.github %}<a href="{{ project.links.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
-          {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noopener">Demo</a>{% endif %}
           {% if project.links.source %}<a href="{{ project.links.source }}" target="_blank" rel="noopener">Source</a>{% endif %}
         </div>
         {% endif %}
