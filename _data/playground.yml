@@ -15,7 +15,13 @@ code:
 
 photos:
   lede: "A quiet portfolio of personal photographs taken with a camera, from fieldwork edges to everyday light."
-  items: []
+  items:
+    - id: "bremen-peacock"
+      title: "Peacock"
+      place: "Bremen"
+      year: "2026"
+      image: "/assets/img/photos/bremen-peacock.jpg"
+      alt: "Close-up of a peacock with iridescent blue and green feathers"
   # Example:
   # - id: "north-sea-light"
   #   title: "North Sea Light"
