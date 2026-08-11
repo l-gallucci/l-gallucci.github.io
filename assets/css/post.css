@@ -23,7 +23,8 @@
 .post-tags .tag:hover{color:var(--accent); border-color:var(--accent-dim); background:var(--accent-wash)}
 
 /* reading column */
-.post-content{font-size:18.5px; line-height:1.8; color:var(--text); font-weight:300}
+.post-content{font-size:18.5px; line-height:1.8; color:var(--text); font-weight:300; text-align:justify; text-justify:inter-word; hyphens:auto}
+.post-content h2,.post-content h3{text-align:left}
 .post-content > *{margin-bottom:1.5em}
 .post-content > *:last-child{margin-bottom:0}
 .post-content h2{font-size:26px; font-weight:600; line-height:1.2; letter-spacing:-.01em; color:var(--text); margin-top:2.2em; margin-bottom:.7em}
