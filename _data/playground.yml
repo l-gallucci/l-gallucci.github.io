@@ -22,6 +22,12 @@ photos:
       year: "2026"
       image: "/assets/img/photos/bremen-peacock.jpg"
       alt: "Close-up of a peacock with iridescent blue and green feathers"
+    - id: "moon-naples"
+      title: "Neapolitan moon"
+      place: "Naples"
+      year: "2026"
+      image: "/assets/img/photos/naples-moon.jpg"
+      alt: "Just the moon"
   # Example:
   # - id: "north-sea-light"
   #   title: "North Sea Light"
