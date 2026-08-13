@@ -46,6 +46,12 @@ photos:
       year: "2026"
       image: "/assets/img/photos/iceland-street1.jpg"
       alt: "Street art in Reykjavík"
+    - id: "iceland-spider"
+      title: "Spider in Hveragerði"
+      place: "Hveragerði"
+      year: "2026"
+      image: "/assets/img/photos/iceland-spider.jpg"
+      alt: "Spider in Hveragerði"
   # Example:
   # - id: "north-sea-light"
   #   title: "North Sea Light"
