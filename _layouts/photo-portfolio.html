@@ -12,7 +12,7 @@ layout: base
     {% for photo in photos %}
     {% assign photo_id = photo.id | default: photo.title | slugify %}
     <figure class="photo-card reveal" id="{{ photo_id }}">
-      <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | default: photo.title }}" loading="lazy">
+      <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | default: photo.title }}" loading="lazy" style="object-position:{{ photo.position | default: '50% 50%' }}">
       <figcaption>
         <span>{{ photo.place }}{% if photo.place and photo.year %} / {% endif %}{{ photo.year }}</span>
         <b>{{ photo.title }}</b>

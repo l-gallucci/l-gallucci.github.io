@@ -71,3 +71,35 @@
   .pn{width:100%}
   .pn.next{margin-left:0; text-align:left; align-items:flex-start}
 }
+
+/* visitor-counter — hydrothermal-vent microbe joke, tied to the site's plume motif */
+.visitor-counter{margin-top:40px; padding:16px 16px 14px; background:var(--panel); border:1px solid var(--line);
+  border-radius:12px; text-align:center}
+.vc-vent{position:relative; width:70px; height:56px; margin:0 auto 8px; overflow:hidden}
+.vc-cone{position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent;
+  border-bottom:16px solid var(--panel-2); filter:drop-shadow(0 0 4px var(--accent-dim))}
+.vc-bubble{position:absolute; bottom:14px; left:50%; width:14px; height:14px; border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, var(--accent-soft), var(--accent) 55%, transparent 80%);
+  filter:blur(2px); opacity:0;
+  animation:vc-puff 4.5s ease-in-out infinite}
+.vc-bubble:nth-child(1){margin-left:-3px; animation-delay:0s}
+.vc-bubble:nth-child(2){margin-left:1px; width:10px; height:10px; animation-delay:.9s}
+.vc-bubble:nth-child(3){margin-left:-2px; animation-delay:1.8s}
+.vc-bubble:nth-child(4){margin-left:3px; width:11px; height:11px; animation-delay:2.7s}
+.vc-bubble:nth-child(5){margin-left:0; width:8px; height:8px; animation-delay:3.6s}
+@keyframes vc-puff{
+  0%{transform:translate(0,0) scale(.5); opacity:0}
+  12%{opacity:.85}
+  45%{transform:translate(0,-22px) scale(1); opacity:.8}
+  100%{transform:translate(var(--drift,26px),-30px) scale(1.6); opacity:0}
+}
+.vc-bubble:nth-child(1){--drift:24px} .vc-bubble:nth-child(2){--drift:30px}
+.vc-bubble:nth-child(3){--drift:20px} .vc-bubble:nth-child(4){--drift:32px} .vc-bubble:nth-child(5){--drift:22px}
+.vc-label{font-family:"JetBrains Mono",monospace; color:var(--accent); font-size:9.5px; letter-spacing:.12em;
+  text-transform:uppercase; margin-bottom:6px}
+.vc-digits{display:flex; justify-content:center; gap:3px; margin-bottom:6px}
+.vc-digit{display:inline-block; width:16px; padding:2px 0; background:var(--panel-2); color:var(--accent-soft);
+  font-family:"JetBrains Mono",monospace; font-size:14px; font-weight:700; border:1px solid var(--line-2);
+  border-radius:3px; text-shadow:0 0 5px var(--accent-dim)}
+.vc-caption{color:var(--muted); font-size:10px; font-style:italic}

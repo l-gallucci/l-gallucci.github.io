@@ -11,7 +11,7 @@
 
 {% if found_photo %}
 <a class="inline-playground-card photo" href="{{ '/playground/photos/' | append: '#' | append: found_photo_id | relative_url }}">
-  {% if found_photo.image %}<img src="{{ found_photo.image | relative_url }}" alt="{{ found_photo.alt | default: found_photo.title }}" loading="lazy">{% endif %}
+  {% if found_photo.image %}<img src="{{ found_photo.image | relative_url }}" alt="{{ found_photo.alt | default: found_photo.title }}" loading="lazy" style="object-position:{{ found_photo.position | default: '50% 50%' }}">{% endif %}
   <span>{{ found_photo.place }}{% if found_photo.place and found_photo.year %} / {% endif %}{{ found_photo.year }}</span>
   <b>{{ found_photo.title }}</b>
 </a>

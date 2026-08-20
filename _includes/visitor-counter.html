@@ -1,0 +1,29 @@
+<div class="visitor-counter">
+  <div class="vc-vent" data-counter-key="{{ page.url | slugify }}">
+    <span class="vc-bubble"></span><span class="vc-bubble"></span><span class="vc-bubble"></span>
+    <span class="vc-bubble"></span><span class="vc-bubble"></span>
+    <span class="vc-cone"></span>
+  </div>
+  <div class="vc-label">EXTREMOPHILE ASSEMBLAGE COUNT</div>
+  <div class="vc-digits" aria-live="polite">
+    <span class="vc-digit">0</span><span class="vc-digit">0</span><span class="vc-digit">0</span><span class="vc-digit">0</span><span class="vc-digit">0</span><span class="vc-digit">0</span>
+  </div>
+  <div class="vc-caption">taxa recorded in the assemblage riding this plume. do not disturb the tube worms.</div>
+</div>
+
+<script>
+(function(){
+  var el = document.currentScript.previousElementSibling;
+  var key = el.querySelector('.vc-vent').getAttribute('data-counter-key') || 'unknown';
+  var digitsEl = el.querySelector('.vc-digits');
+  fetch('https://abacus.jasoncameron.dev/hit/lgallucci-personalsite/' + key)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var val = String(data.value).padStart(6, '0').slice(-6);
+      digitsEl.innerHTML = val.split('').map(function(d){ return '<span class="vc-digit">' + d + '</span>'; }).join('');
+    })
+    .catch(function(){
+      digitsEl.innerHTML = '<span class="vc-digit">?</span><span class="vc-digit">?</span><span class="vc-digit">?</span><span class="vc-digit">?</span><span class="vc-digit">?</span><span class="vc-digit">?</span>';
+    });
+})();
+</script>
