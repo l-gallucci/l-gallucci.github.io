@@ -16,7 +16,10 @@
   var el = document.currentScript.previousElementSibling;
   var key = el.querySelector('.vc-vent').getAttribute('data-counter-key') || 'unknown';
   var digitsEl = el.querySelector('.vc-digits');
-  fetch('https://abacus.jasoncameron.dev/hit/lgallucci-personalsite/' + key)
+  var isOwner = localStorage.getItem('vc_owner') === '1';
+  var endpoint = (isOwner ? 'https://abacus.jasoncameron.dev/get/' : 'https://abacus.jasoncameron.dev/hit/')
+    + 'lgallucci-personalsite/' + key;
+  fetch(endpoint)
     .then(function(r){ return r.json(); })
     .then(function(data){
       var val = String(data.value).padStart(6, '0').slice(-6);
