@@ -28,8 +28,8 @@
     "region": "Greenland Spreading Zone · Arctic",
     "ship": "R/V Celtic Explorer",
     "description": "Exploring extreme habitats in Arctic seamounts and hydrothermal vents along the Greenland Spreading Zone.",
-    "coords": [73.45, -7.15],
+    "coords": [70.9833, -8.5333],
     "logo": "/assets/icons/GREAT.png",
-    "status": "future"
+    "status": "past"
   }
 ]
