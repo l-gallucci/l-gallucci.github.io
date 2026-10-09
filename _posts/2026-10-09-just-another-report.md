@@ -9,7 +9,7 @@ tags:
   - cruise
   - hydrothermal vents
   - exploration
-  - failure
+  - discovery
 ---
 Word of mouth. That is exactly how I have ended up several times in situations where I never imagined I would be. It is the same way I was invited last year to take part in a cruise with a group of people I had never collaborated with before. From the start, it was clear that the purpose of the trip was to explore, taking potential failure into account. The goal? To find new deep hydrothermal vent fields. Finding a new hydrothermal field is a bit like developing a new molecular method. You will find yourself competing with decades (actually not that many) of "new is better, but the old one already works," and if you are lucky, your name ends up in the hall of fame of those who found one, and maybe someone gives you a pat on the back.
 
