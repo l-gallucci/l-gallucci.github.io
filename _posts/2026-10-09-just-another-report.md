@@ -30,3 +30,5 @@ And then moving slightly towards Iceland, we found several volcanic structures. 
 ![]({{ '/assets/images/IMG_1632.jpeg' | relative_url }})
 
 We bring home clues, unexpected data, interesting hypotheses, and lots and lots of work to do to add another piece to what we don't know about these systems. Meanwhile, with this writing, I am just adding another report to the infinity of scientific accounts you can find online, hoping to one day tell you more about what we didn't find in these cold, isolated systems.
+
+![]({{ '/assets/images/Iceland-33.jpg' | relative_url }})
